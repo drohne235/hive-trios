@@ -1,0 +1,49 @@
+
+hex
+
+ifnot: lib:win 
+: lib:win ;
+
+\ kommandoformate
+
+ifnot: bel:char        \ ( b -- )
+: bel:char b[ [b!] ]b ;
+ifnot: bel:fkt!        \ ( fkt -- ) 
+: bel:fkt! b[ 0 [b!] [b!] ]b ;                
+ifnot: bel:fkt!b!      \ ( b fkt -- ) 
+: bel:fkt!b! b[ 0 [b!] [b!] [b!] ]b ;                
+ifnot: bel:fkt!b@      \ ( fkt -- b ) 
+: bel:fkt!b@ b[ 0 [b!] [b!] [b@] ]b ;                
+ifnot: bel:fkt!b!b!    \ ( b b fkt -- )
+: bel:fkt!b!b! b[ 0 [b!] [b!] [b!] [b!] ]b ;
+ifnot: bel:fkt!5b!    \ ( b b b b b fkt -- )
+: bel:fkt!5b! b[ 0 [b!] [b!] [b!] [b!] [b!] [b!] [b!] ]b ;
+ifnot: bel:ctrl!       \ ( ctrl -- )
+: bel:ctrl! b[ 0 [b!] 3 [b!] [b!] ]b ;
+ifnot: bel:ctrl!b!     \ ( b ctrl -- )
+: bel:ctrl!b! b[ 0 [b!] 3 [b!] [b!] [b!] ]b ;
+ifnot: bel:ctrl!b@     \ ( ctrl -- b@ )
+: bel:ctrl!b@ b[ 0 [b!] 3 [b!] [b!] [b@] ]b ;
+ifnot: bel:ctrl!b!b!   \ ( b b ctrl -- ) 
+: bel:ctrl!b!b! b[ 0 [b!] 3 [b!] [b!] [b!] [b!] [b!] ]b ;
+
+
+\ fensterfunktionen
+
+ifnot: win:define \ ( yn xn y0 x0 w ) - fenster definieren
+: win:define
+  50 bel:fkt!5b!  ;
+  
+ifnot: win:set \ ( w -- ) - fenster auswählen
+: win:set  52 bel:fkt!b! ;
+    
+ifnot: win:getcols \ ( -- cols ) - anzahl spalten im fenster abfragen
+: win:getcols  54 bel:fkt!b@ ;
+
+ifnot: win:getrows \ ( -- rows ) - anzahl zeilen im fenster abfragen
+: win:getrows  55 bel:fkt!b@ ;
+
+ifnot: win:oframe \ ( -- ) - rahmen um fenster zeichnen
+: win:oframe  56 bel:fkt! ;
+
+

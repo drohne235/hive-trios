@@ -1,0 +1,55 @@
+
+hex
+
+ifnot: lib:ari 
+: lib:ari ;
+
+\ abs ( n1 -- abs_n1 ) absolute value of n1
+ifnot: abs
+: abs _execasm1>1 151 _cnip ;
+
+\ u*/mod ( u1 u2 u3 -- u4 u5 ) u5 = (u1*u2)/u3, u4 is the 
+\ remainder. Uses a 64bit intermediate result.
+ifnot: u*/mod
+: u*/mod rot2 um* rot um/mod ;
+
+\ u*/ ( u1 u2 u3 -- u4 ) u4 = (u1*u2)/u3 Uses a 64bit 
+\ intermediate result.
+ifnot: u*/
+: u*/ rot2 um* rot um/mod nip ;
+
+\ sign ( n1 n2 -- n3 ) n3 is the xor of the sign bits of 
+\ n1 and n2 
+ifnot: sign
+: sign xor 80000000 and ;
+
+\ */mod ( n1 n2 n3 -- n4 n5 ) n5 = (n1*n2)/n3, n4 is the 
+\ remainder. Uses a 64bit intermediate result.
+ifnot: */mod
+: */mod 2dup sign >r abs rot dup r> sign >r abs rot abs 
+  um* rot um/mod r> if negate swap negate swap then ;
+  
+\ */ ( n1 n2 n3 -- n4 ) n4 = (n1*n2)/n3. Uses a 64bit 
+\ intermediate result.
+ifnot: */
+: */ */mod nip ;
+
+\ /mod ( n1 n2 -- n3 n4 ) \ signed divide & mod  n4 = n1/n2, 
+\ n3 is the remainder
+ifnot: /mod
+: /mod 2dup sign >r abs swap abs swap u/mod r> if negate swap 
+  negate swap then ;
+
+\ * ( n1 n2 -- n1*n2) n1 multiplied by n2
+ifnot: *
+: * um* drop ;
+
+\ / ( n1 n2 -- n1/n2) n1 divided by n2
+ifnot: /
+: / /mod nip ;
+
+\ rnd ( -- n1 ) n1 is a random number from 00 - FF
+ifnot: rnd
+: rnd cnt COG@ 8 rshift cnt COG@ xor FF and ;
+
+

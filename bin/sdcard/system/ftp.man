@@ -1,0 +1,39 @@
+
+/h <a.b.c.d>    : FTP-Server-Adresse (Host)
+                  (default: mit ipconfig gesetzter Boot-Server)
+/d <verzeichnis>: in entferntes Verzeichnis wechseln
+                  (default: /hive/sdcard/system)
+/f <dateiname>  : Download <dateiname>
+/u <username>   : Benutzername am FTP-Server
+                  (default: anonymous)
+/p <password>   : PaÃŸwort am FTP-Server
+                  (default: anonymous@hive<Hive-Id>)
+/s              : Datei auf SD-Card speichern
+
+
+Ein Beispiel:
+Zum Download von 
+
+  ftp://1.2.3.4/verzeichnis/unterverzeichnis/datei.txt
+
+verwendet man folgende Befehlszeile:
+
+  ftp /h 1.2.3.4 /d /verzeichnis/unterverzeichnis /f datei.txt
+
+Dabei erfolgt die Anmeldung wegen der fehlenden Parameter 
+/u und /p als "anonymous" mit dem Paßwort "anonymous@hivexxx" 
+(xxx: mit ipconfig gesetzte Hive-Id). Die Datei wird in 
+der RAM-Disk gespeichert (s. Kommando "xdir") und könnte 
+mittels "xsave" auf SD-Card gespeichert werden.
+
+Mit Nutzung aller Default-Werte genügt die Eingabe des 
+folgenden Befehls:
+
+  ftp /s /f ipconfig.bin
+
+Damit wird die Datei "ipconfig.bin" vom FTP-Server mit der 
+IP-Adresse des mittels "ipconfig" konfigurierten Boot-
+Servers aus dem Verzeichnis "/hive/sdcard/system" geladen 
+und im aktuellen Verzeichnis auf der SD-Card
+abgespeichert. Von dort könnte sie direkt gestartet werden.
+

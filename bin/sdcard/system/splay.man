@@ -1,0 +1,8 @@
+/?          : Hilfetext
+/m name.dmp : DMP-Datei mono auf SID2 abspielen
+/s name.dmp : DMP-Datei stereo auf beiden SIDs abspielen
+/d          : Verzeichnis wiedergeben
+              q - quit
+              n - next
+              p - pause
+

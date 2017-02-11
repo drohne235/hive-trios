@@ -1,0 +1,40 @@
+
+Reset-Fehlercodes:
+
+0011FFFF - stack overflow
+0012FFFF - return stack overflow
+0021FFFF - stack underflow
+0022FFFF - return stack underflow
+8100FFFF - no free cogs
+8200FFFF - no free main memory
+8400FFFF - fl no free main memory
+8500FFFF - no free cog memory
+8800FFFF - eeprom write error
+9000FFFF - eeprom read error
+
+.err-Fehlercodes:
+
+0    no error
+1    fsys unmounted
+2    fsys corrupted
+3    fsys unsupported
+4    not found
+5    file not found
+6    dir not found
+7    file read only
+8    end of file
+9    end of directory
+10   end of root
+11   dir is full
+12   dir is not empty
+13   checksum error
+14   reboot error
+15   bpb corrupt
+16   fsi corrupt
+17   dir already exist
+18   file already exist
+19   out of disk free space
+20   disk io error
+21   command not found
+22   timeout
+23   parameter error

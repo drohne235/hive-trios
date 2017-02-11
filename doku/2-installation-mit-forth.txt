@@ -1,0 +1,66 @@
+Installation des Grundsystems:
+==============================
+
+TriOS kann in zwei Versionen installiert werden: Mit oder ohne Forth als integrierte Programmiersprache. Als Standard wird das System ohne Forth installiert. Die Installation ist so für den Einsteiger einfacher. Möchte man auch PropForth installieren, muß nur eine Konfiguration geändert werden und ein Basiswortschatz im Forth selbst kompiliert werden - keine Panik, klingt komplizierter als es ist! ;)
+
+WICHTIG: Das System kann nur mit Brat's Spin Tool - kurz BST - compiliert werden. In den Einstellungen des Compilers (Tools/Compiler Preferences/Search Paths) muss das lib-Verzeichnis eingetragen werden.
+
+Downloadlink BST: http://www.fnarfbargle.com/bst.html 
+
+
+
+Installation ohne Forth (Standard):
+-----------------------------------
+
+1. Mikrocontroller flashen:
+
+\flash\administra\admflash.spin	--> Administra
+\flash\bellatrix\belflash.spin	--> Bellatrix
+\flash\regnatix\regflash.spin	--> Regnatix
+
+
+Installation mit Forth:
+-----------------------
+
+1. Umstellung auf Forth
+
+In der Datei \flash\regnatix\regflash.spin kann über zwei Compilervariablen eingestellt werden, ob TriOS während dem Bootvorgang die Kommandozeile Regime oder PropForth startet. Dafür ist am Anfang der Datei folgende Sequenz zu suchen:
+
+#define forth         ' forth + spin-loader
+'#define regime       ' spin-loader OHNE FORTH, reg.sys wird sofort automatisch gestartet
+
+Einfach "#define forth" aktivieren und die Datei speichern. 
+
+
+2. Mikrocontroller flashen:
+
+Nacheinander die drei BIOS-Dateien in den Flash des entsprechenden Chips flashen.
+
+\flash\administra\admflash.spin	--> Administra
+\flash\bellatrix\belflash.spin	--> Bellatrix
+\flash\regnatix\regflash.spin	--> Regnatix
+  
+
+3. Der Schalter bleibt ab jetzt auf Regnatix stehen. Ein Terminalprogramm (ich verwende Tera Term) starten und 57600 Baud auf die Schnittstelle vom Hive (DIP steht auf Regnatix!) einstellen. Nach einem Reset meldet sich das Propforth im Terminalprogramm auf dem Hostcomputer. Datei "forth\basics.mod" in einem Editor öffnen, alles markieren, kopieren und im Terminal einfügen. Der Quelltext wird jetzt im Forth compiliert. Sind alle Erweiterungen compiliert, wird automatisch das Forth in den Flash geschrieben. 
+
+Nach einem automatischen Reset sollte sich das Forth jetzt komplett mit seinem Prompt sowohl auf dem angeschlossenen VGA-Monitor, als auch im Terminal melden. Im Prinzip benötigen wir nun das Terminalprogramm nicht mehr und können direkt am Hive arbeiten. Später, wenn man in Forth programmiert, ist die vorhandene Terminalschnittstelle aber manchmal sehr nützlich.
+
+
+
+Erstellen der SDCard:
+---------------------
+
+Im Prinzip kann jede normale FAT16/32 Karte verwendet werden. Lange Dateinamen werden nicht verwendet, Unterverzeichnisse sind kein Problem. Es ist sinnvoll, alle Dateien aus dem Verzeichnis "bin\sd-card\" auf die SD-Karte zu kopieren.
+
+Das Verzeichnis "system" hat eine besondere Bedeutung: Hier sollten sich die Tools, Erweiterungen und Bibliotheken befinden. Im PropForth: Mit  dem Kommando "sys name.f" kann aus jedem anderen Verzeichnis ohne Wechsel eine Datei name.f im Verzeichnis System geladen und compiliert werden.
+
+
+
+Systemstart:
+------------
+
+Beim Systemstart wird immer das Forth aus dem EEPROM gestartet. So kann, wie mit den klassischen Homecomputern, sofort unkompliziert programmiert werden. Neben dem Forth gibt es im TriOS noch ein in Spin programmiertes Betriebssystem, welches sich dem Benutzer durch den Kommandointerpreter Regime präsentiert. Aus dem Forth kann diese mit dem Kommando "regime" gestartet werden. Im Gegenzug kann im laufenden Regime mit dem Kommando "forth" wieder zur integrierten Programmiersprache gewechselt werden.
+
+Wurde TriOS ohne Forth installiert, wird der Loader aus dem EEPROM gestartet und sofort die Kommandozeile "Regime" aus der Datei reg.sys gestartet.
+
+

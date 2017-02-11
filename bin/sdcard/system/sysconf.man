@@ -1,0 +1,18 @@
+/?              : Hilfe
+/l              : Konfiguration anzeigen
+----------------  Administra-Funktionen
+/ah 0|1         : hss ab-/anschalten
+/aw 0|1         : wav ab-/anschalten
+/as 0|1         : systemklänge ab-/anschalten
+/al 0..100      : wav-lautstärke links
+/ar 0..100      : wav-lautstärke rechts
+/ah 0..15       : hss-lautstärke
+/af             : administra reset, flash booten
+/at             : transfergeschwindigkeit messen
+----------------  Bellatrix-Funktionen
+/ci             : farbtabelle anzeigen
+/cs datei       : farbtabelle speichern
+/cl datei       : farbtabelle laden
+----------------  Port-Funktionen
+/po nr anz time : Impulse an port ausgeben
+/pi             : Status der Port abfragen

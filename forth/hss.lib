@@ -1,0 +1,60 @@
+
+hex
+
+ifnot: lib:hss
+: lib:hss ;
+
+\ kommandoformate
+
+ifnot: adm:fkt!         \ ( fkt -- )
+: adm:fkt! b[ [a!] ]b ;
+
+ifnot: adm:fkt!b!       \ ( b fkt -- )
+: adm:fkt!b! b[ [a!] [a!] ]b ;
+
+ifnot: adm:fkt!b!b!     \ ( b b fkt -- )
+: adm:fkt!b!b! b[ [a!] [a!] [a!] ]b ;
+
+ifnot: adm:fkt!b!w@     \ ( b fkt -- w )
+: adm:fkt!b!w@ b[ [a!] [a!] [a.w@] ]b ;
+
+ifnot: adm:fkt!s!b@     \ ( cstr fkt -- b )
+: adm:fkt!s!b@ b[ [a!] [a.s!] [a@] ]b ;
+
+\ hss-funktionen
+
+\ ( cstr -- err ) - hss-datei laden
+ifnot: hss:load     
+: hss:load dup if 64 adm:fkt!s!b@ then ;
+
+\ ( -- ) - datei im puffer abspielen
+ifnot: hss:play     
+: hss:play 65 adm:fkt! ; 
+
+\ ( -- ) - player stop
+ifnot: hss:stop       
+: hss:stop 66 adm:fkt! ;
+
+\ ( -- ) - player pause
+ifnot: hss:pause    
+: hss:pause 67 adm:fkt! ;
+
+\ hreg ( regnr -- 16b )
+\ 0  iEndFlag iRowFlag iEngineC iBeatC  iRepeat      Player
+\ 5  iNote    iOktave  iVolume  iEffekt iInstrument  Kanal 1
+\ 10 iNote    iOktave  iVolume  iEffekt iInstrument  Kanal 2
+\ 15 iNote    iOktave  iVolume  iEffekt iInstrument  Kanal 3
+\ 20 iNote    iOktave  iVolume  iEffekt iInstrument  Kanal 4
+\ 
+\ iEndFlag      Repeat oder Ende wurde erreicht
+\ iRowFlag      Trackerzeile (Row) ist fertig
+\ iEngineC      Patternzähler
+\ iBeatC        Beatzähler (Anzahl der Rows)
+\ iRepeat       Zähler für Loops
+ifnot: hss:reg      
+: hss:reg 69 b[ [a!] [a!] [a.w@] ]b ;
+
+\ hvol ( vol -- ) - lautstärke 0..15
+ifnot: hss:vol      
+: hss:vol 6A adm:fkt!b! ;
+

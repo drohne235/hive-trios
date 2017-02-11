@@ -1,0 +1,426 @@
+r57
+
+admflash
+- plexbusroutinen eingefügt
+- sd_del - heartbeat-sound angepasst 
+
+belflash
+- per compilerflag wählbare monitorsettings eingefügt (57/60hz)
+
+basic.mod (propforth)
+- bei der installation von trios mit forth muss basic.mod nur noch eingefügt werden, damit wird automatisch geflasht und neu gestartet
+
+lib:
+- adm-enc28j60 eingefügt, treiber netzwerkchip
+- adm-socket eingefügt, netzwerksocket
+- adm-plx code ausgebaut
+- bel-vga monitorsettings
+- glob-con plexbus/lan-konstanten eingefügt
+- glob-led-engine neue lib für hbeat-led-pwm
+- gui-dlbox - redraw beschleunigt
+- gui-wbox - warnbox ist jetzt auch mit tab & esc bedienbar
+- m-glob-con - konstanten für sound und plexbus eingefügt
+
+reg-ios:
+- testfunktion für rtc
+- lan funktionen eingefügt
+- plexbus funktionen eingefügt
+- printblk - stringausgabe mit längenangabe
+
+system/administra:
+- admnet eingefügt
+
+system/regnatix:
+- fm - optimierungen und detailverbesserungen
+- perplex - plexbus tool zugefügt
+- regime - sysinfo zeigt jetzt auch devices am plexbus an
+- man - systemklänge angepasst, damit nicht ständig der heartbeat beim lesen läuft
+- ramtest - anpassungen maske/farben
+
+dokumentation: 
+- neustrukturierung der texte
+
+
+
+
+
+r56 - 11-05-2013-dr235
+
+und weiter gehts mit dem frühjahresputz:
+
+- umstellung administra-codes (admflash, admay, admsid) auf externe konstantendefinitionen
+
+belflash:
+
+- fehler im loader behoben
+
+lib:
+
+- gui-objekte für textoberfläche eingefügt:
+ 
+  gui-dlbox	- listenbox für dateien
+  gui-input	- einfaches eingabefenster
+  gui-pbar	- hinweisdialog mit progress-bar (z.bsp. für kopieraktionen)
+  gui-wbox	- warnbox mit auswahloptionen
+
+system/regnatix:
+
+- filemanager fm zugefügt
+- metal-loader m zugefügt
+- tool zum erstellen von tapes (mental-containerdateien) zugefügt
+- wplay: kleinen darstellungsfehler behoben
+- yplay: konstanten ausgelagert
+
+system/sonstiges:
+
+- manual zugefügt: error, fm
+
+
+
+r55 - 15-04-2013-dr235
+
+fällige aufräumarbeitem im quelltext:
+- umstellung bildschirmcodes/g0-treiber auf externe konstantendefinitionen
+- umstellung signaldefinitionen für belflash/g0key
+- alle funktionsnummern für bella werden nun in lib\glob-con.spin verwaltet und gepflegt
+- screeninit gibt jetzt keine kopfzeile mehr aus, geht jetzt über fensterfunktionen
+- anpassung div. tools 
+
+system\regnatix\regime:
+- leere eingaben werden jetzt ignoriert
+- mit der Cursortaste kann jetzt der letzte Befehl wiederholt werden
+
+r54 - 15-04-2013-dr235:
+
+flash\admflash.spin
+- grundlegende com-funktionen eingefügt
+
+lib\reg-ios.spin
+- com-funktionen
+- ios.screeninit: kein logo im v-modus
+
+system\administra\admay\admay.spin
+- sd_dmput eingefügt
+- sd_eof eingefügt
+
+system\regnatix\admtest.spin
+- korrektur bei fehlerhaftem screeninit
+
+system\regnatix\beltest.spin
+- menü eingefügt um einzelnen tests auszuführen
+- anpassung an tv-modus
+- neuer test für fensterfunktionen
+
+system\regnatix
+- tool man eingefügt
+- umstrukturierung aller tool-hilfen an man
+- anpassung der meisten tools an tv-modus
+
+system\sonstiges
+- man-hilfetexte eingefügt
+
+
+r53 - 20.02.2013 dr235/u-held:
+
+flash\admflash.spin		
+- scr-funktionen ausgefügt
+flash\belflash.spin:
+- fehler im loader behoben (cog0 wurde nicht in allen fällen beendet) dank dafür geht an pic :)
+- farbtabellen auf 16 farben ergänzt, normalfarbe ist jetz mal retro-green :)
+flash\regflash.spin:
+- pause für slaves zur initialisierung eingefügt, damit diese bei installation ohne forth sauber starten
+
+forth\bel.lib:
+- korrektur wort bel:load
+forth\sd0.lib:
+- div. fehlerhafte stackkommentare korrigiert
+forth\tools.lib:
+- korrektur wort bel:load
+forth\g0.lib: zugefügt
+forth\tpix.f: zugefügt
+forth\win.lib: zugefügt
+
+lib\reg-ios.spin:
+- fehler in g0 printdec behoben
+- neue sidcog-funktion: sid_dmpreg
+
+system\administra\admsid\admsid.spin:
+- funktion sid_dmpreg eingefügt (für triborg-player)
+- funktion sd_dmput aus maincode übernommen
+- funktion sd_eof aus maincode übernommen
+
+system\regnatix\g0test.spin:
+- neue test's & effekte eingefügt
+
+system\regnatix\sysconf.spin:
+- "sysconf /ci" zeigt nun alle 16 farben an
+
+system\sonstiges\green.col:
+- grüne retro-farbtabelle eingefügt
+
+
+r52:
+g0key.spin - Bug bei horizontaler Textzentrierung beseitigt
+belflash.spin - Interface VGA/TV vereinheitlicht, umschaltbar beim Compilieren (siehe make.bat)
+belf-tv.spin, belf-vga.spin - treiberspezifische Konstanten und Funktionen für belflash.spin
+bel-bus.spin - Auslagerung der Bus-Routinen aus Bellatrix-Sicht
+beltest.spin - Anpassung an belflash.spin, auch im TV-Modus nutzbar
+make.bat - tv.bel wird jetzt aus belflash.spin erzeugt; Einführung einer Variablen für den Compiler-Aufruf
+reg-ios.spin - hmm... habsch vergessen, was da geändert wurde :-(
+
+r51:			
+belflash.spin:
+- verzögertes Scrolling bei abgeschaltetem Cursor
+- Window-Funktionen
+glob-con.spin:
+- Auslagerung von globalen Konstanten (ansatzweise)
+reg-ios.spin:
+- Einbindung der neuen Bellatrix-Funktionen
+beltest.spin:
+- sline/eline-Test entfernt, Window-Test eingefügt
+
+27.11.2011-dr235
+- bellatrix-code für grafikmodus 0 + keyboard hinzugefügt
+- g0test - testprogramm für g0-modus hinzugefügt
+- reg-ios - g0-funktionen eingearbeitet
+- make.bat angepasst
+
+13.11.2011-dr235
+- rtc-routinen neu eingefügt
+- admterm entfernt, hat im trios keine funktion
+
+11.11.2011-dr235
+- umfangreicher umbau der verzeichnisstruktur: alle universellen quellen wie treiber oder klassische bibliotheken werden nun im verzeichnis "lib" gespeichert und können so an einer stelle gepflegt werden.
+- alle anwendungen die nichts mit trios zu tun haben werden nun aus dem projekt entfernt und in einer toolbox-serie veröffentlicht. damit wird trios stark entschlackt und wieder übersichtlich.
+- überarbeitung der make.bat; es werden nun auch die alternativen slave-codes wie zum beispiel admsid erstellt. 
+- in der standardkonfiguration ist jetzt forth deaktiviert - das ist einfacher für den einsteiger. forth ist dann "level 2".
+
+WICHTIG: im bst muß nun der compiler-suchpfad für trios auf das verzeichnis "lib" eingestellt werden.
+
+
+09.11.2011-dr235
+- fehler in regflash.spin behoben, konfiguration ohne forth konnte nicht compiliert werden
+- standartkonfiguration ist jetzt ohne forth, ist einfacher für den einstieg
+- div. demos entfernt, diese werden später getrennt in einer toolbox-serie veröffentlicht
+
+
+06.11.2011-dr235
+- fehlersuche zum problem mit dem neuen bella-loader: einige bel-dateien (guidemo, 4-boing) wurden nicht korrekt initialisiert, also starteten nicht sauber. parameter und ladevorgang ist korrekt, ursache ist wahrscheinlich eine falsche initialisierung der stackwerte im pasm-teil des loaders. als lösung kann man diese bel-dateien als eeprom-image abspeichern, diese starten korrekt.
+
+
+23.04.2011-dr235	
+- integration von propforth in trios
+
+
+15-04-2011-dr235
+- flash-tool/rom: damit kann unter anderem eine bin-datei (z. bsp. basic) in den hi-rom (64k eeprom erforderlich!) gespeichert und mit rom gestartet werden
+- übernahme der rtc-routinen von stephan
+- time-kommando: anzeige/änderung datum/zeit
+- perplex: experimentelles tool für plexbus (scan/open/close/get/put)
+- fterm: primitiv-terminal für forth-hive
+
+
+18-09-2010-dr235
+- regime: free zeigt jetzt auch die speicherbelegung des eram an
+- speicherverwaltung/ramdisk integriert (beispielcode siehe eram.spin & regime.spin)
+- eram.bin kann jetzt auch mit ramdisk umgehen
+- regime: neue kommandos für ramdisk
+- egalisierung der namen für den ramzugriff (älterer code muß leicht angepasst werden)
+- user- und systemmode für ramzugriff eingefügt
+- erste version eine make-batch um das gesamte system zu kompilieren (nur grundsystem)
+- änderung zur ios: da bst eine pfadliste zu bibliotheksordnern unterstützt, liegt (soweit das möglich ist) die ios nun nur noch unter system\regnatix 
+			  
+WICHTIG: Pfad zur ios.spin im bst einstellen
+
+
+23-08-2010-dr040
+- integration ay-emulator (admay.adm) und yplay
+
+
+19-07-2010-dr235
+- booten eines alternativen administra-codes: befindet sich auf der karte in der root eine datei "adm.sys", so wird diese datei automatisch in administra geladen
+
+
+11-07-2010-dr235
+- integration sid1/2-funktionen in admsid/ios
+- anpassung sid-demo von ahle2 als regnatix-code (verzeichnis demo)
+- diverse graphics-spielereien (verzeichnis demo)
+- sysconf /af - administra neu booten (admflash.adm wird dadurch überflüssig)
+
+
+27-06-2010-dr085/235
+- admin mountet nun automatisch nach einem boot		
+
+
+26-06-2010-dr235
+- div. demos zugefügt
+- shooter angepasst und eingefügt
+
+
+20-06-2010-dr235
+- erste lauffähige SID-Player-Version für die Kommandozeile (splay)
+
+
+14-06-2010-dr085/235
+- Semaphoren in FATEngine korrekt eingesetzt
+- Abfrage des Volume-Labels korrigiert
+
+
+10-06-2010-dr235
+- Kommando "ramtest" zugefügt
+
+
+09-06-2010-dr085
+- Fehler in Administra-Bootfunktion behoben
+
+
+-----------------------------------------------------------------------------------------------
+
+23-04-2011-dr235
+
+Ein neuer Meilenstein: PropForth ist jetzt in TriOS integriert. Als Nebeneffekt starten nun wieder, wie bei meiner ersten SpinOS-Version, alle drei Chips ihren initialen Code aus ihrem EEPROM und nicht mehr vom SD-Laufwerk. Damit gibt es vom Einschalten bis zum Forth-Prompt quasi keine fühlbare Bootzeit mehr. So gehört es sich für einen richtigen Homecomputer. Es ist nun möglich, unmittelbar nach dem Einschalten sofort zu programmieren. Erst wenn man zu Regime wechselt wird kurz reg.sys nachgeladen. Aber selbst die Ladezeiten sind nun durch Verwendung des SD-Blocktransfer erfreulich kurz. 
+
+Obwohl das Grundsystem vom Forth den halben hRAM belegt, ist es als genormte Sprache doch eine wunderbare Geschichte im Hive. Viele der Ressourcen sind jetzt schon problemlos in Forth nutzbar und man kann sehr unkompliziert experimentieren.
+
+
+02-10-2010-dr235
+
+Speicherverwaltung:
+
+In dieser Version ist eine erste Beta-Version der Speicherverwaltung des externen RAM's enthalten. Der Speicher kann dabei in einem einfachen oder einem strukturierten Modus verwendet werden. Klingt kompliziert, ist aber ganz einfach. 
+
+Einfacher Modus:
+
+Hierbei kann ein Programm auf den eRAM über die IOS-Routinen ios.ram_* zugreifen. Wahlweise kann der Speicher im Systemmode direkt von 0 bis $07FFFF angesprochen werden, oder nur der Userbereich. Im Systemmodus ist darauf zu achten, dass eine eventuell vorhandene Ramdisk und die Systemvariablen nicht überschrieben werden, man sollte also wissen was man tut... ;) Die Ramdisk wird ab der physischen Adresse 0 als verkettete Liste verwaltet, die Systemvariablen befinden sich ab $07FFFF abwärts. 
+
+ios.ram_wrbyte(ios#sysmod,0,ios#MAGIC)
+- Schreibt den Wert 0 in die Systemvariable, um einen Kaltstart auszulösen.
+
+ios.ram_wrbyte(ios#sysmod,$20,$100)
+- Schreibt den Wert $20 an die physische Adresse $100 im eRAM.
+
+Da es nun mühsam ist in einem kleinen Code solche Konflikte mit dem Systemspeicher zu vermeiden, gibt es den Usermodus.  Im Usermodus wird nur genau jener freie Speicher adressiert, welcher sich zwischen Ramdisk und Systemvariablen befindet. In diesem Fall ist die Adressierung also virtualisiert.
+
+ios.ram_wrbyte(ios#usrmod,0,$100)
+- Schreibt den Wert 0 an die Adresse $100 im Userspeicher!
+
+In Regime kann man mit dem Kommando "free" jetzt auch die wichtigsten Systemvariablen der Speicherverwaltung anzeigen.
+
+RBAS		
+- erste physische Adresse des Userspeichers
+
+REND
+- Physische Adresse der letzten freien Speicherstelle des Userspeichers.
+
+USER
+- Grösse des Userspeichers (REND - RBAS).
+
+RAMDRV	
+0 - Ramdisk ist nicht initialisiert
+1 - Ramdisk ist initialisiert
+
+SYSVAR
+- Erste physische Adresse der Systemvariablen.
+
+Noch genauer kann man sich die Speicherbelegung mit dem Tool "eram" anschauen. Nur ein paar Beispiele:
+
+"d" Anzeige des Speichers. Es werden zwei Adressspalten angezeigt. Die zweite schwarze Adresse in jeder Zeile zeigt die physische Adresse, die erste grüne Adresse die virtuelle Adresse im Userspeicher. Man kann sehr gut erkennen, ab welcher Adrese der Userbereich anfängt und wo er endet.
+
+"d 100"	Anzeige ab physischer Adresse $100
+
+"d bas"	Anzeige vom Start des Userspeichers.
+
+"n" Anzeige inkrementell fortsetzen
+
+Die Nutzung des Userspeichers ist sehr einfach. Es sind dabei nur folgende Regeln zu beachten:
+
+Man muss selbst darauf achten die Speichergrenzen nicht zu überschreiten. Bei Überschreitung kann aber nichts passieren - die IOS-Routinen brechen einfach ab, allerdings werden die eigenen Daten halt nicht korrekt verarbeitet. Es werden also die Systemvariablen und die Daten in der Ramdisk geschützt.
+Der Userbereich im eRAM ist nur zur Laufzeit der Anwendung gültig. Wird die Anwendung beendet, so kann durch Regime oder eine andere Anwendung mit den Daten der Ramdisk gearbeitet werden, wodurch sich der physische Bereich des Userbereiches verändert. Wer also residente Daten über die Laufzeit der Anwendung hinaus braucht, muss im strukturierten Modus mit der Ramdisk arbeiten.
+In einer Anwendung nicht den einfachen oder strukturierten Modus mischen - das gibt Chaos, wenn man nicht ganz genau aufpasst
+
+Ansonsten kann man wie gehabt die schon bekannten IOS-Routinen verwenden, einzig der Übergabeparameter zur Wahl des System- oder Usermodus sind hinzugekommen. Als Beispiel kann man sich die Soundplayer anschauen, die ihre Dateiliste im Userspeicher ablegen.
+ 
+Strukturierter Modus:
+
+Was ist aber, wenn wir einen kleinen Texteditor schreiben wollen, der seine Textdaten resident im eRAM speichern kann? Ich möchte also den Texteditor verlassen können, um in Regime zum Beispiel einen Assembler aufzurufen, welcher den Text dann assembliert.  Darauf folgend möchte ich meinen Texteditor wieder starten und an dem Text weiter arbeiten. Dafür muss es meiner Anwendung - dem Textprogramm - möglich sein, einen Speicherbereich im eRAM zu reservieren, der von System und anderen Anwendungen respektvoll behandelt wird.
+
+Gedacht, getan: Im strukturierten Modus wird der Speicher in Form einer Ramdisk verwaltet. Die Dateien/Daten können über ihren Namen angesprochen werden. Es kann mit put & get sequentiell, oder mit read & write direkt adressierbar auf die Daten in der Datei zugegriffen werden.
+
+Als erstes praktisches Beispiel mögen die neuen Kommandos in Regime selbst dienen, mit denen man die Ramdisk verwalten kann:
+Neue Regime-Kommandos:
+
+xload <sd:fn>           - datei in ram laden
+xsave <x:fn>            - datei aus ram speichern
+xdir                    - verzeichnis im ram anzeigen
+xrename <x:fn1> <x:fn2> - datei im ram umbenennen
+xdel <x:fn>             - datei im ram löschen
+xtype <x:fn>            - text im ram anzeigen
+
+So ist es also möglich, sich in der Kommandozeile anzuschauen, welche residenten Daten die Programme aktuell angelegt haben. Sofern es Textdaten sind, können diese Daten auch einafch angezeigt werden.
+
+Die Speicherverwaltung ist allerdings noch sehr experimentell - was bedeutet, dass wohl noch einige Bugs drin sein dürften. :)
+
+MAKE.BAT
+
+Diese Batchdatei im obersten Verzeichnis kompiliert das Grundsystem, bestehend aus den drei Flashdateien und den grundlegenden Kommandos im Systemverzeichnis. Ist ein erster Versuch. Was noch fehlt ist ein Fehlerlog und vielleicht noch die anderen Programme.
+
+09-06-2010-dr235
+
+Nach nur zwei Tagen hat drohne085 (frida) das Geheimnis um die Bootroutine gelöst: Die Ursache lag in einer von der FATEngine verwendeten Semaphore, welche fest auf den Lock 0 "verdrahtet" war. Diese Semaphore wird an diversen Stellen in der Engine verwendet, wurde aber beim Bootvorgang nicht gelöscht oder freigegeben! Gedacht war sie, um den Bus zur SD-Card bei einem Zugriff zu verriegeln, falls mehrere Instanzen der Engine laufen, und gleichzeitig zugreifen wollen. Somit hat sich die Engine quasi selbst verriegelt und nach dem Bootvorgang als "neue Instanz" nun auch keinen Zugriff mehr - so schön kann praktische Parallelverarbeitung sein... ;)
+
+Hier nun eine neue und aktuelle Version mit einer temporären funktionierenden Lösung des Problems.
+
+Im System-Ordner gibt es jetzt folgende ausführbare Administra-Dateien:
+
+admflash.adm		Standard-Flash, welches auch im EEProm gespeichert ist
+admini.adm		Mini-Flash ohne Sound, nor SDCard + Managment-Routinen
+admled.adm		Das Heartbeat-LED-Testprogramm zum direkten laden
+aterm96.adm		Die leicht modifizierte Kommandozeile vom Programmierer der FATEngine. Mit 
+			diesem Administra-Code kann man direkt über die Hostschnittstelle (9600 Baud)
+			mit dem Chip kommunizieren. Dokumentation der Kommandos findet man im 
+			Verzeichnis "komponenten/fat/fatengine beta"
+ 
+
+07-06-2010-dr235
+
+Hier der aktuelle Stand von TriOS. Momentan kämpfe ich an einem 
+Komplexfehler mit dem Bootloader von Administra. Das Problem ist recht 
+einfach zu reproduzieren, aber leider (für mich) nur schwer zu
+erfasen: Die verwendete FATEngine besitzt eine Bootfunktion um einen
+neuen BIN-Objektcode in den Propeller zu laden. Dieser Code funktioniert 
+auch teilweise. So kann man das Administra-Bios selbst laden und dann
+auch per Regime-Kommandos verwenden: Die Kommandos "cogs" und "sysinfo"
+sprechen Administra-Funktionen an, welche auch korrekt ausgeführt werden.
+Das Problem: Nach dem Bootprozess kann man keine SD-Card mehr mounten.
+
+Es ist auch möglich den Fehler noch weiter einzugrenzen: Wenn man die 
+originale FATEngine (im Verzeichnis komponenten/fat) vom Host direkt in  
+Administra startet, meldet sich diese in Form einer einfachen Kommando-
+zeile per Hostschnittstelle. Versucht man dort eine erzeugte BIN-Datei
+genau dieser Kommandozeile (demo.spin) zu booten, so hat man das gleiche
+Ergebnis.
+
+Verzeichnisstruktur:
+
+bin			- BIN-Dateien für die Flash's und die SD-Card
+doku			- 
+flash			- Quelltexte für die Software in den EEProms
+system			- Quelltext für ausführbare BIN-Dateien
+zubehör			- Kleine Zusatzprogramme (StarTracker, Boulder Dash...)
+komponenten		- Div. verwendete Objekte (FATEngine, SIDCog...)
+
+Installation:
+
+1. 	Flashen der drei EEProms mit den BIN-Dateien aus  "bin/flash" oder
+	über das Propellertool aus den Quellen "flash".
+
+2. 	SD-Card erstellen: Einfach alles aus "bin/sd-card" auf eine FAT16/32
+	Karte kopieren.
+
+Das System bootet Regnatix und Bellatrix beim Systemstart aus den Dateien
+"adm.sys", "reg.sys" bzw. "bel.sys". Diese Dateien können auch das Hidden-Bit gesetzt
+haben. Externe Kommandos bzw. ausführbare BIN-Dateien werden im aktuellen
+UND im System-Verzeichnis gesucht - alle Systemkommandos können also in das 
+System-Verzeichnis kopiert werden.
+
+Hilfe gibt es meist über das Kommando "help" oder den Parameter "/h".

@@ -1,0 +1,34 @@
+
+cls                   - bildschirm löschen
+bye                   - player beenden
+d <adresse> <zeilen>  - anzeige eram
+n                     - anzeige fortsetzen
+s <adr> <len> <n>     - sucht wert
+m <adr> <n1> ... <nx> - ram modifizieren (byte)
+l <adr> <l1> ... <lx> - ram modifizieren (long)
+load <adr len dname>  - ladei datei in eram
+sysvar                - anzeige systemvariablen
+rbas <adr>            - basisadresse setzen
+info                  - speicheraufteilung anzeigen
+f  <adr len wert>     - speicherbereich füllen (sysmod)
+fu <adr len wert>     - speicherbereich füllen (usermod)
+xinit                 - rdisk initialisieren
+xnew <name> <len>     - neue datei anlegen
+xhead                 - header anzeigen
+xdir                  - dir anzeigen
+xdel <name>           - datei löschen
+xren <fn1> <fn2>      - datei umbenennen
+xftab                 - ftab anzeigen
+xopen <name>          - datei öffnen
+xseek <fnr pos>       - zeiger positionieren
+xput <fnr n cnt>      - zeichen in datei schreiben
+xget <fnr cnt>        - zeichenh aus datei lesen
+xwrite <fnr adr chr>  - wert schreiben
+xread <fnr adr>       - wert lesen
+xload <name>          - datei in rd laden
+xsave <name>          - datei fn1 auf sd fn2 speichern
+
+bas        - basisadresse
+end        - endadresse (startsysvar)
+sys        - start systemvariablen
+rd: <name> - daten datei

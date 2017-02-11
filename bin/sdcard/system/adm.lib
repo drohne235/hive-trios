@@ -1,0 +1,90 @@
+
+hex
+
+ifnot: lib:adm 
+: lib:adm ;
+
+\ kommandoformen
+
+ifnot: adm:fkt!         \ ( fkt -- )
+: adm:fkt! b[ [a!] ]b ;
+
+ifnot: adm:fkt!b!       \ ( b fkt -- )
+: adm:fkt!b! b[ [a!] [a!] ]b ;
+
+ifnot: adm:fkt!b@      \ ( fkt -- b )
+: adm:fkt!b@ b[ 0 [a!] [a!] [a@] ]b ; 
+
+ifnot: adm:fkt!b!b@     \ ( b fkt -- b )
+: adm:fkt!b!b@ b[ [a!] [a!] [a@] ]b ;
+
+ifnot: adm:fkt!l@     \ ( fkt -- l )
+: adm:fkt!l@ b[ [a!] [a.l@] ]b ;
+
+ifnot: adm:fkt!s!     \ ( s fkt -- )
+: adm:fkt!s! b[ [a!] [a.s!] ]b ;
+
+\ administra-chipmanagment-funktionen
+
+\ adm:setsound ( sfkt -- sstat ) - soundsystem verwalten
+\ sfkt:
+\ 0: hss-engine abschalten
+\ 1: hss-engine anschalten
+\ 2: dac-engine abschalten
+\ 3: dac-engine anschalten
+\ sstat  - status/cognr startvorgang
+ifnot: adm:setsound
+: adm:setsound
+  5C adm:fkt!b!b@ ;
+
+\ adm:getspec ( -- spec ) - chipspezifikation abfragen
+\ 
+\                            +---------- com
+\                            | +-------- i2c
+\                            | |+------- rtc
+\                            | ||+------ lan
+\                            | |||+----- sid
+\                            | ||||+---- wav
+\                            | |||||+--- hss
+\                            | ||||||+-- bootfähig
+\                            | |||||||+- dateisystem
+\ %00000000_00000000_00000000_01001111
+ifnot: adm:getspec
+: adm:getspec
+  5D adm:fkt!l@ ; 
+
+\ adm:setsyssound ( syssnd -- ) - systemklänge 
+\ syssnd = 0 - systemklänge aus
+\ syssnd = 1 - systemklänge an
+ifnot: adm:setsyssound
+: adm:setsyssound
+  5E adm:fkt!b! ;
+
+\ adm:getsoundsys ( -- sndsys ) - abfrage aktives soundsystem
+\ 0 - sound aus
+\ 1 - hss
+\ 2 - wav
+ifnot: adm:getsoundsys
+: adm:getsoundsys
+  5F adm:fkt!b@ ;
+
+\ adm:load ( cstr -- ) - neuen administra-code laden
+ifnot: adm:aload
+: adm:aload
+  60 adm:fkt!s! ;
+
+\ adm:getcogs ( -- cogs ) - anzahl der belegten cogs
+ifnot: adm:getcogs
+: adm:getcogs
+  61 adm:fkt!b@ ;
+  
+\ adm:getver ( -- ver ) - abfrage der codeversion
+ifnot: adm:getver
+: adm:getver
+  62 adm:fkt!l@ ;
+
+\ adm:reset ( -- ) - reset administra
+ifnot: adm:reset
+: adm:reset
+  63 adm:fkt! ;      
+

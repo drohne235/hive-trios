@@ -1,0 +1,8 @@
+Wiedergabe von YM-Dateien mittels AY-3-891X / YM2149 emulator
+
+/?          : Hilfetext
+/p name.YM  : YM-Datei abspielen
+/d          : Verzeichnis wiedergeben
+              q - quit
+              n - next
+              p - pause

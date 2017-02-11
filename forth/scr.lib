@@ -1,0 +1,69 @@
+
+hex
+
+ifnot: lib:scr 
+: lib:scr ;
+
+\ kommandoformate
+ifnot: bel:char        \ ( b -- )
+: bel:char b[ [b!] ]b ;
+ifnot: bel:fkt!b!      \ ( b fkt -- ) 
+: bel:fkt!b! b[ 0 [b!] [b!] [b!] ]b ;                
+ifnot: bel:fkt!b!b!    \ ( b b fkt -- )
+: bel:fkt!b!b! b[ 0 [b!] [b!] [b!] [b!] ]b ;
+ifnot: bel:ctrl!       \ ( ctrl -- )
+: bel:ctrl! b[ 0 [b!] 3 [b!] [b!] ]b ;
+ifnot: bel:ctrl!b!     \ ( b ctrl -- )
+: bel:ctrl!b! b[ 0 [b!] 3 [b!] [b!] [b!] ]b ;
+ifnot: bel:ctrl!b@     \ ( ctrl -- b@ )
+: bel:ctrl!b@ b[ 0 [b!] 3 [b!] [b!] [b@] ]b ;
+ifnot: bel:ctrl!b!b!   \ ( b b ctrl -- ) 
+: bel:ctrl!b!b! b[ 0 [b!] 3 [b!] [b!] [b!] [b!] [b!] ]b ;
+
+\ einfache steuerzeichen
+ifnot: scr:cls     \ ( -- ) - screen löschen
+: scr:cls 01 bel:char ;
+ifnot: scr:home    \ ( -- ) - cursor oben links
+: scr:home 02 bel:char ;
+ifnot: scr:pos1    \ ( -- ) - cursor an zeilenanfang  
+: scr:pos1 03 bel:char ;
+ifnot: scr:curon   \ ( -- ) - cursor anschalten
+: scr:curon 04 bel:char ;
+ifnot: scr:curoff  \ ( -- ) - cursor abschalten
+: scr:curoff 05 bel:char ;
+ifnot: scr:scrlu   \ ( -- ) - screen nach oben scrollen
+: scr:scrlu 06 bel:char ;
+ifnot: scr:scrld   \ ( -- ) - screen nach unten scrollen
+: scr:scrld 07 bel:char ;
+ifnot: scr:bs      \ ( -- ) - backspace  
+: scr:bs 08 bel:char ;
+ifnot: scr:tab     \ ( -- ) - tabulator
+: scr:tab 09 bel:char ;
+
+\ screen-funktionen
+ifnot: scr:logo    \ ( y x -- ) - hive logo  
+: scr:logo 5 bel:fkt!b!b! ; 
+ifnot: scr:char    \ ( char -- ) - zeichensatz direkt ausgeben 
+: scr:char 6 bel:fkt!b! ; 
+
+\ parametrisierte steuerzeichen
+ifnot: scr:setcur  \ ( cur -- ) - cursorzeichen setzen
+: scr:setcur 01 bel:ctrl!b! ; 
+ifnot: scr:setx    \ ( x -- ) - cursor position x setzen  
+: scr:setx 02 bel:ctrl!b! ; 
+ifnot: scr:sety    \ ( y -- ) - cursor position y setzen 
+: scr:sety 03 bel:ctrl!b! ; 
+ifnot: scr:getx    \ ( -- x ) - cursor position x abfragen             
+: scr:getx 04 bel:ctrl!b@ ; 
+ifnot: scr:gety    \ ( -- y ) - cursor position y abfragen            
+: scr:gety 05 bel:ctrl!b@ ; 
+ifnot: scr:setcol  \ ( colnr -- ) - farbe wählen 0..15
+: scr:setcol 06 bel:ctrl!b! ; 
+ifnot: scr:sline   \ ( row -- ) - anfangszeile scrollbereich
+: scr:sline 07 bel:ctrl!b! ; 
+ifnot: scr:eline   \ ( row -- ) - endzeile scrollbereich
+: scr:eline 08 bel:ctrl!b! ; 
+ifnot: scr:sinit   \ ( -- ) - 
+: scr:sinit 09 bel:ctrl! ; 
+ifnot: scr:tabset  \ ( pos nr -- ) - tabulatorposition setzen 0..7
+: scr:tabset 0A bel:ctrl!b!b! ; 

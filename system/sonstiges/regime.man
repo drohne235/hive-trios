@@ -1,0 +1,57 @@
+help                     - diese hilfe
+<sd:dateiname>           - bin/adm/bel-datei wird gestartet
+mount                    - sd-card mounten
+unmount                  - sd-card abmelden
+dir wh                   - verzeichnis anzeigen
+type <sd:fn>             - anzeige einer textdatei
+aload <sd:fn>            - administra-code laden
+bload <sd:fn>            - bellatrix-treiber laden
+rload <sd:fn>            - regnatix-code laden
+del <sd:fn>              - datei löschen
+cls                      - bildschirm löschen
+free                     - freier speicher auf sd-card
+attrib <sd:fn> ashr      - attribute ändern
+cd <sd:dir>              - verzeichnis wechseln
+mkdir <sd:dir>           - verzeichnis erstellen
+rename <sd:fn1> <sd:fn2> - datei/verzeichnis umbenennen
+format <volname>         - sd-card formatieren
+reboot                   - hive neu starten
+sysinfo                  - systeminformationen
+color <0..7>             - farbe wählen
+cogs                     - belegung der cogs anzeigen
+dmlist                   - anzeige der verzeichnis-marker
+dm <r/s/u/a/b/c>         - in das entsprechende marker-
+                           verzeichnis wechseln
+dmset <r/s/u/a/b/c>      - setzt den entsprechenden marker
+                           auf das aktuelle verzeichnis
+dmclr <r/s/u/a/b/c>      - marker löschen
+forth                    - forth starten
+
+marker:
+r       - root-verzeichnis
+s       - system-verzeichnis
+u       - user-verzeichnis
+a/b/c   - benutzerdefinierte verzeichnismarker
+r, s, u-marker werden vom system automatisch gesetzt und
+intern verwendet.
+
+RAMDISK:
+
+xload <sd:fn>           - datei in ram laden
+xsave <x:fn>            - datei aus ram speichern
+xdir                    - verzeichnis im ram anzeigen
+xrename <x:fn1> <x:fn2> - datei im ram umbenennen
+xdel <x:fn>             - datei im ram löschen
+xtype <x:fn>            - text im ram anzeigen
+
+EXTERNE KOMMANDOS:
+
+sysconf               - systemeinstellungen
+hplay                 - hss-player
+wplay                 - wav-player
+sfxtool               - hss-soundeffekte erstellen
+
+vga.bel               - vga 1024 x 768 pixel, 64 x 24 zeichen
+htext.bel             - vga 1024 x 768 pixel, 128 x 48 zeichen
+tv.bel                - tv-textmodus 40 x 13 zeichen
+

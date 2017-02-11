@@ -1,0 +1,59 @@
+\ require ari.lib
+
+ifnot: lib:g0 
+: lib:g0 ; 
+
+hex
+
+10 constant g0:xtiles
+0C constant g0:ytiles
+5000 constant g0:disp_base
+
+decimal
+
+ifnot: g0:load
+: g0:load
+  c" g0key.bel" bel:load ;
+
+ifnot: g0:reboot
+: g0:reboot 99 b[ [b!] ]b ;
+
+hex
+
+ifnot: g0:setcolortab
+: g0:setcolortab \ ( addr -- )
+  5D b[ [b!]
+  40 0 do dup L@ [b.l!] 4 + loop
+  ]b drop ;
+
+ifnot: g0:settilescreen
+: g0:settilescreen \ ( addr -- )
+  5E b[ [b!]
+  g0:ytiles 0 do
+    g0:xtiles 0 do dup W@ [b.w!] 2 + loop
+  loop ]b drop ;
+
+decimal
+
+\ ifnot: g0:setscreen
+: g0:setscreen  \ ( addr addr -- )
+  g0:setcolortab g0:settilescreen ;
+
+ifnot: g0:static
+: g0:static 98 b[ [b!] ]b ;
+
+ifnot: g0:dynamic
+: g0:dynamic 97 b[ [b!] ]b ;
+
+ifnot: g0:clear      \ (  --  ) - bildschirm loeschen
+: g0:clear 10 b[ [b!] ]b ;
+
+ifnot: g0:color      \ ( color --  ) - zeichenfarbe setzen
+: g0:color 12 b[ [b!] [b!] ]b ;
+
+ifnot: g0:width      \ ( x --  ) - punktgroesse setzen
+: g0:width 13 b[ [b!] [b!] ]b ;
+
+ifnot: g0:plot      \ ( y x --  ) - punkt setzen
+: g0:plot 15 b[ [b!] [b!] [b!] ]b ] ;
+

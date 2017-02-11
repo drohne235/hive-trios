@@ -1,0 +1,93 @@
+
+hex
+
+ifnot: lib:sfx 
+: lib:sfx ;
+
+\ kommandoformen
+
+ifnot: adm:fkt!b!       \ ( b fkt -- )
+: adm:fkt!b! b[ [a!] [a!] ]b ;
+
+ifnot: adm:fkt!b!b!     \ ( b b fkt -- )
+: adm:fkt!b!b! b[ [a!] [a!] [a!] ]b ;
+
+ifnot: adm:fkt!b!64b!     \ ( ptr b fkt -- )
+: adm:fkt!b!64b! b[ [a!] [a!] 
+  31 0 do dup i + C@ [a!] loop drop ]b ;
+
+\ sfx-funktionen
+
+\ sfx:fire( chan slot -- ) - sfx abspielen
+\ slot - $00..$0f nummer der freien effektpuffer
+\ slot - $f0..f5 vordefinierte effektslots
+\ chan - 0/1 stereokanal 
+\ vordefinierte effekte   
+\ &f0 - warnton
+\ $f1 - signalton
+\ $f2 - herzschlag schnell
+\ $f3 - herzschlag langsam
+\ $f4 - telefon
+\ $f5 - phaser :)
+\ $f6 - pling
+\ $f7 - on
+\ $f8 - off
+ifnot: sfx:fire  
+: sfx:fire 6B adm:fkt!b!b! ;
+
+\ ( ptr slot -- ) - sfx setzen
+\ slot - $00..$0f nummer der freien effektpuffer
+\ ptr - zeiger auf 32 byte effektdaten
+\ 
+\ struktur der effektdaten:
+\ 
+\ [wav ][len ][freq][vol ]      grundschwingung
+\ [lfo ][lfw ][fma ][ama ]      modulation
+\ [att ][dec ][sus ][rel ]      hüllkurve
+\ [seq ]                        (optional)
+\ 
+\ [wav]                         wellenform
+\  0 sinus (0..500hz)
+\  1 schneller sinus (0..1khz)
+\  2 dreieck (0..500hz)
+\  3 rechteck (0..1khz)
+\  4 schnelles rechteck (0..4khz)
+\  5 impulse (0..1,333hz)
+\  6 rauschen
+\ [len]                         tonlänge $0..$fe, $ff endlos
+\ [freq]                        frequenz $00..$ff
+\ [vol]                         lautstärke $00..$0f
+\ 
+\ [lfo]                         low frequency oscillator $ff..$01
+\ [lfw]                         low frequency waveform
+\  $00 sinus (0..8hz)
+\  $01 fast sine (0..16hz)
+\  $02 ramp up (0..8hz)
+\  $03 ramp down (0..8hz)
+\  $04 square (0..32hz)
+\  $05 random
+\  $ff sequencer data          (es folgt eine sequenzfolge [seq])
+\ [fma]                         frequency modulation amount
+\  $00 no modulation
+\  $01..$ff
+\ [ama]                         amplitude modulation amount
+\  $00 no modulation
+\  $01..$ff
+\ [att]                         attack $00..$ff
+\ [dec]                         decay $00..$ff
+\ [sus]                         sustain $00..$ff
+\ [rel]                         release $00..$ff
+ifnot: sfx:setslot  
+: sfx:setslot 
+  6C adm:fkt!b!64b! ;
+
+\ sfx:keyoff ( chan -- ) - release-phase einleiten
+ifnot: sfx:keyoff
+: sfx:keyoff
+  6D adm:fkt!b! ;
+  
+\ sfx:stop ( chan -- )
+ifnot: sfx:stop
+: sfx:stop
+  6E adm:fkt!b! ;
+

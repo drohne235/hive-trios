@@ -1,0 +1,17 @@
+
+hex
+
+ifnot: lib:key 
+: lib:key ;
+
+\ kommandoformate
+ifnot: bel:fkt!b@  \ ( fkt -- b ) 
+: bel:fkt!b@ b[ 0 [b!] [b!] [b@] ]b ;    
+
+\ keyboard-funktionen
+ifnot: key:stat    \ ( -- stat ) - tastenstatus abfragen 
+: key:stat 1 bel:fkt!b@ ;
+ifnot: key:code    \ ( -- code ) - tastencode abfragen
+: key:code 2 bel:fkt!b@ ;
+ifnot: key:spec    \ ( -- spec ) - spezialtasten abfragen
+: key:spec 4 bel:fkt!b@ ;

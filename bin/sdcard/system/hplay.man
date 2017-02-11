@@ -1,0 +1,7 @@
+/?             : hilfetext
+/p name.wav    : hss-datei abspielen
+/d             : verzeichnis abspielen
+/s             : wiedergabe stoppen
+/t             : anzeige trackerliste
+/r             : anzeige engine-register
+/i             : anzeige interface-register

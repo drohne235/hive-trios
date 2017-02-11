@@ -1,0 +1,17 @@
+
+openwr <adr>      - slave schreibend öffnen
+openrd <adr>	- slave lesend öffnen
+close             - slave schließen
+put <wert>        - zeichen zu plexus senden
+get               - zeichen von plexus empfangen
+map               - slavemap anzeigen
+scan              - anzeige aller slaveadressen
+test              - test für interne sepia-karte
+test# adda port   - test für spezifische sepia-karte
+game              - gamedevice abfragen (pollregister)
+setgame adda port - adressen für poller setzen adda/port
+polloff           - polling anhalten
+pollon            - polling starten
+bye               - programm beenden
+
+Parameter hexadezimal!

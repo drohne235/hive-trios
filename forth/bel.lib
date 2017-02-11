@@ -1,0 +1,81 @@
+
+hex
+
+ifnot: lib:bel 
+: lib:bel ; 
+
+ifnot: [b.w!]
+: [b.w!] \ ( 16b -- ) - word an bellatrix senden
+  dup 8  rshift [b!] [b!] ;
+
+\ kommandoformate
+
+ifnot: bel:fkt!        \ ( fkt -- )        
+: bel:fkt! b[ 0 [b!] [b!] ]b ; 
+
+ifnot: bel:fkt!b!      \ ( b fkt -- )
+: bel:fkt!b! b[ 0 [b!] [b!] [b!] ]b ; 
+
+ifnot: bel:fkt!b!l@    \ ( b fkt -- l )
+: bel:fkt!b!l@ b[ 0 [b!] [b!] [b!] [b.l@] ]b ; 
+
+ifnot: bel:fkt!b!l!    \ ( l b fkt -- )
+: bel:fkt!b!l! b[ 0 [b!] [b!] [b!] [b.l!] ]b ; 
+
+ifnot: bel:fkt!l@      \ ( fkt -- l )
+: bel:fkt!l@ b[ 0 [b!] [b!] [b.l@] ]b ;     
+
+ifnot: bel:fkt!b@      \ ( fkt -- b )
+: bel:fkt!b@ b[ 0 [b!] [b!] [b@] ]b ; 
+   
+\ chipmanagment-funktionen
+
+ifnot: bel:wscr        \ ( scrnr --  ) - schreibscreen setzen 
+: bel:wscr 58 bel:fkt!b! ;  
+
+ifnot: bel:dscr        \ ( scrnr --  ) - displayscreen setzen
+: bel:dscr 59 bel:fkt!b! ;  
+
+ifnot: bel:getcol      \ ( colnr -- col ) - farbe abfragen
+: bel:getcol 5A bel:fkt!b!l@ ;  
+
+ifnot: bel:setcol      \ ( col colnr -- ) - farbe setzen
+: bel:setcol 5B bel:fkt!b!l! ;  
+
+ifnot: bel:getresx     \ ( -- resx ) - abfrage x-auflösung
+: bel:getresx 5C bel:fkt!l@ ;  
+
+ifnot: bel:getresy     \ ( -- resy ) - abfrage y-auflösung
+: bel:getresy 5D bel:fkt!l@ ;  
+
+ifnot: bel:getcols     \ ( -- cols ) - abfrage textspalten
+: bel:getcols 5E bel:fkt!b@ ;  
+
+ifnot: bel:getrows     \ ( -- rows ) - abfrage textzeilen
+: bel:getrows 5F bel:fkt!b@ ;  
+
+ifnot: bel:getcogs     \ ( -- cogs ) - abfrage belegte cogs
+: bel:getcogs 60 bel:fkt!b@ ;  
+
+ifnot: bel:getspec     \ ( -- spec ) - abfrage codespezifikation
+: bel:getspec 61 bel:fkt!l@ ;  
+
+ifnot: bel:getver      \ ( -- ver ) - abfrage codeversion
+: bel:getver 62 bel:fkt!l@ ;  
+
+ifnot: bel:load        \ ( cstr -- ) - bellatrix-code laden
+: bel:load
+  52 adm:open .err      \ datei öffnen
+  b[
+    0 [b!] 57 [b!]                       \ bella-loader starten
+    10 0 do 06 [a!] [a@] [b!] loop       \ header einlesen
+    0A [a!] 0 [a.l!]                     \ 0 adm:seek
+    [b@] <8 [b@] or                      \ dateilänge empfangen
+    0 do 06 [a!] [a@] [b!] loop          \ datei senden
+  ]b                                     
+  adm:close .err       \ datei schließen
+;
+
+
+
+

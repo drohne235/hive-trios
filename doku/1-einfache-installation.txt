@@ -1,0 +1,23 @@
+Einfache Installation:
+
+Eine einfache Installation ist sowohl mit dem Propeller Tool von Parallax, als auch mit Brat's Spin Tool (BST) möglich. Die aktuelle Version von TriOS ist auf der Webseite zum Hive-Projekt zu finden.
+
+Downloadlink TriOS: http://hive-project.de/downloads
+
+Downloadlink Propeller Tool: http://www.parallax.com/downloads/propeller-tool-software
+Downloadlink BST: http://www.fnarfbargle.com/bst.html 
+
+Nach dem entpacken der TriOS-Archivdatei findet man alle nötigen Dateien für eine Grundinstallation im Unterverzeichnis "bin". Die Installation erfolgt in zwei Schritten:
+
+1. Vorbereitung des TriOS-Datenträgers (SD-Card)
+2. Flashen der drei Propellerchips im Hive
+
+1. TriOS-Disk: Die SD-Card muss im Format FAT16 oder FAT32 formatiert werden. Alle Dateien aus dem Unterverzeichnis "bin\sdcard" werden auf die Karte kopiert - fertig!
+
+2. Flashen: Im Unterverzeichnis "bin\flash" befinden sich die Binary-Dateien für die drei Chips. Bei korrekt installiertem Propellertool oder BST wird bei einem Doppelklick auf diese Dateien das entsprechende Tool zum flashen gestarten. Nicht vergessen, den DIP-Switch auf dem Hiveboard auf den entsprechenden Chip einzustellen!
+
+Bei eingelegter SD-Card und nach dem Flashen der drei Chipcodes startet TriOS automatisch die Kommandozeile "Regime" und ist betriebsbereit.
+
+Im Tutorial "010 - Lizenz zum Löten! - Lang lebe die Königin" kannst du dir die Grundinstallation auch als Video anschauen: http://hive-project.de/content/3651
+
+Viel Spaß! :)   

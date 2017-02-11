@@ -1,0 +1,176 @@
+
+hex
+
+ifnot: lib:sd0 
+: lib:sd0 ;
+
+\ ------------------------------------ lib:sd0
+
+\ kommandoformate
+
+ifnot: adm:fkt!b!       \ ( b fkt -- )
+: adm:fkt!b! b[ [a!] [a!] ]b ;
+
+ifnot: adm:fkt!b!b@     \ ( b fkt -- b )
+: adm:fkt!b!b@ b[ [a!] [a!] [a@] ]b ;
+
+ifnot: adm:fkt!b!l@     \ ( b fkt -- l )
+: adm:fkt!b!l@ b[ [a!] [a!] [a.l@] ]b ;
+
+ifnot: adm:fkt!l!     \ ( l fkt -- )
+: adm:fkt!l! b[ [a!] [a.l!] ]b ;
+
+ifnot: adm:fkt!l@     \ ( fkt -- l )
+: adm:fkt!l@ b[ [a!] [a.l@] ]b ;
+
+ifnot: adm:fkt!b!l!     \ ( l b fkt -- )
+: adm:fkt!b!l! b[ [a!] [a!] [a.l!] ]b ;
+
+ifnot: adm:fkt!s!b@     \ ( s fkt -- b )
+: adm:fkt!s!b@ b[ [a!] [a.s!] [a@] ]b ;
+
+ifnot: adm:fkt!b!s!b@     \ ( s b fkt -- b )
+: adm:fkt!b!s!b@ b[ [a!] [a!] [a.s!] [a@] ]b ;
+
+ifnot: adm:fkt!s!s!b@     \ ( s s fkt -- b )
+: adm:fkt!s!s!b@ b[ [a!] [a.s!] [a.s!] [a@] ]b ;
+
+\ dateisystem-funktionen
+
+\ adm:mount ( -- err ) - medium mounten
+ifnot: adm:mount
+: adm:mount
+  01 adm:fkt!b@ ;
+
+\ adm:diropen ( -- ) - verzeichnisabfrage initialisieren
+ifnot: adm:diropen
+: adm:diropen
+  02 adm:fkt! ;
+
+\ adm:nextfile ( -- st ) 
+\ st = 0 - keine gültige datei
+\ st = 1 - dateiname im pad gültig 
+\ bei gültigem eintrag befindet sich der dateiname im pad
+ifnot: adm:nextfile
+: adm:nextfile 
+  b[ 03 [a!] [a@] dup if [a.s@] then ]b ; 
+
+\ adm:open ( cstr modus -- err ) - datei öffnen
+\ modus "R" $52 - Read
+\ modus "W" $57 - Write
+\ modus "A" $41 - Append
+ifnot: adm:open
+: adm:open
+  04 adm:fkt!b!s!b@ ;
+
+\ adm:close ( -- ) - datei schließen
+ifnot: adm:close
+: adm:close
+  05 adm:fkt!b@ ;
+
+\ adm:getc ( -- c ) - ein zeichen aus datei lesen
+ifnot: adm:getc
+: adm:getc 
+  06 adm:fkt!b@ ;
+
+\ adm:putc ( c -- ) - ein zeichen in datei schreiben
+ifnot: adm:putc
+: adm:putc
+  07 adm:fkt!b! ;
+
+\ adm:eof ( -- eof ) - abfrage ob end of file erreicht ist
+ifnot: adm:eof
+: adm:eof
+  1E adm:fkt!b@ ;
+
+\ adm:getblk ( adr cnt -- ) - datenblock aus datei lesen
+
+\ adm:putblk ( adr cnt -- ) - datenblock in datei schreiben
+
+\ adm:seek ( pos -- ) - position in datei setzen
+: adm:seek
+  0A adm:fkt!l! ;
+  
+\ adm:fattrib ( nr -- attrib ) - dateiattribut abfragen
+ifnot: adm:fattrib
+: adm:fattrib 
+  0B adm:fkt!b!l@ ;  
+
+\ adm:volname ( -- ) - name des volumes im pad ablegen
+ifnot: adm:volname
+: adm:volname
+  0C adm:fkt!s@ ;
+
+\ adm:checkmounted ( -- t/f )
+ifnot: adm:checkmounted
+: adm:checkmounted
+  0D adm:fkt!b@ ;
+
+\ adm:checkopen ( -- t/f )
+ifnot: adm:checkopen
+: adm:checkopen
+  0E adm:fkt!b@ ;
+
+\ adm:checkused ( -- used ) - anzahl benutzte sektoren
+ifnot: adm:checkused
+: adm:checkused
+  0F adm:fkt!l@ ;
+
+\ adm:checkfree ( -- free ) - anzahl freie sektoren
+ifnot: adm:checkfree
+: adm:checkfree
+  10 adm:fkt!l@ ;
+
+\ adm:newfile ( cstr -- err ) - neue datei erstellen
+ifnot: adm:newfile
+: adm:newfile
+  11 adm:fkt!s!b@ ;
+  
+\ adm:newdir ( cstr -- err ) - neues verzeichnis erstellen 
+ifnot: adm:newdir
+: adm:newdir
+  12 adm:fkt!s!b@ ;
+
+\ adm:del ( cstr -- err ) - datei/verzeichnis löschen  
+ifnot: adm:del
+: adm:del
+  13 adm:fkt!s!b@ ;
+
+\ adm:rename ( cstr1.fn1 cstr2.fn2 -- err )
+ifnot: adm:rename
+: adm:rename
+  14 adm:fkt!s!s!b@ ;
+
+\ adm:chattrib ( cstr1.fn cstr2.attrib -- err )
+ifnot: adm:chattrib
+: adm:chattrib
+  15 adm:fkt!s!s!b@ ;
+  
+\ adm:chdir ( cstr -- err ) - verzeichnis öffnen
+ifnot: adm:chdir
+: adm:chdir
+  16 adm:fkt!s!b@ ;
+
+\ adm:format ( cstr.label -- err ) - medium formatieren
+ifnot: adm:format
+: adm:format
+  17 adm:fkt!s!b@ ;
+
+\ adm:unmount ( -- err ) - medium unmounten  
+ifnot: adm:unmount
+: adm:unmount
+  18 adm:fkt!b@ ;
+
+\ marker-funktionen
+
+ifnot: adm:dmact        \ ( dmnr -- ) - marker aktivieren
+: adm:dmact 19 adm:fkt!b!b@ .err ;
+ifnot: adm:dmset        \ ( dmnr -- ) - marker setzen
+: adm:dmset 1A adm:fkt!b! ;
+ifnot: adm:dmget        \ ( dmnr -- dm ) - marker lesen
+: adm:dmget 1B adm:fkt!b!l@ ;
+ifnot: adm:dmclr        \ ( dmnr -- ) - marker löschen
+: adm:dmclr 1C adm:fkt!b! ;
+ifnot: adm:dmput        \ ( dm dmnr -- ) - marker schreiben
+: adm:dmput 1D adm:fkt!b!l! ;
+

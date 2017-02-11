@@ -1,0 +1,10 @@
+/?         : Hilfe
+/fh <fn>   : Datei in HI-ROM flashen
+/fl <fn>   : Datei in LO-ROM flashen
+/dh        : Dump HI-ROM
+/dl        : Dump LO-ROM
+/vh <fn>   : Vergleich Datei <--> HI-ROM
+/ch        : HI-ROM löschen
+/cl        : LO-ROM löschen
+/sh <fn>   : HI-ROM speichern
+/sl <fn>   : LO-ROM speichern

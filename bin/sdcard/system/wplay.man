@@ -1,0 +1,9 @@
+/?          : Hilfetext
+/p name.wav : WAV-Datei abspielen
+/d          : Verzeichnis wiedergeben
+              q - quit
+              n - next
+              p - pause
+/l 0..100   : Lautstärke links
+/r 0..100   : Lautstärke rechts
+/i name.wav : Info zur Datei anzeigen

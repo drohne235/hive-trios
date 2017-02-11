@@ -1,0 +1,596 @@
+
+H:\Projekte\Technik\hive 1\software\TriOS\TriOS-SVN\hive-trios>date /T 
+21.06.2014 
+
+H:\Projekte\Technik\hive 1\software\TriOS\TriOS-SVN\hive-trios>time /T 
+18:38
+
+H:\Projekte\Technik\hive 1\software\TriOS\TriOS-SVN\hive-trios>REM Pfade 
+
+H:\Projekte\Technik\hive 1\software\TriOS\TriOS-SVN\hive-trios>set sd=".\bin\sdcard" 
+
+H:\Projekte\Technik\hive 1\software\TriOS\TriOS-SVN\hive-trios>set sd-sys=".\bin\sdcard\system" 
+
+H:\Projekte\Technik\hive 1\software\TriOS\TriOS-SVN\hive-trios>set flash=".\bin\flash" 
+
+H:\Projekte\Technik\hive 1\software\TriOS\TriOS-SVN\hive-trios>set libpath=".\lib" 
+
+H:\Projekte\Technik\hive 1\software\TriOS\TriOS-SVN\hive-trios>set BSTC=bstc.exe 
+
+H:\Projekte\Technik\hive 1\software\TriOS\TriOS-SVN\hive-trios>REM ---------------------------------------------------------------- 
+
+H:\Projekte\Technik\hive 1\software\TriOS\TriOS-SVN\hive-trios>REM Alte Versionen löschen 
+
+H:\Projekte\Technik\hive 1\software\TriOS\TriOS-SVN\hive-trios>del ".\bin\flash"\*.* /Q 
+
+H:\Projekte\Technik\hive 1\software\TriOS\TriOS-SVN\hive-trios>del ".\bin\sdcard"\*.* /Q 
+
+H:\Projekte\Technik\hive 1\software\TriOS\TriOS-SVN\hive-trios>del ".\bin\sdcard\system"\*.* /Q 
+
+H:\Projekte\Technik\hive 1\software\TriOS\TriOS-SVN\hive-trios>REM ---------------------------------------------------------------- 
+
+H:\Projekte\Technik\hive 1\software\TriOS\TriOS-SVN\hive-trios>REM Flashdateien erzeugen 
+
+H:\Projekte\Technik\hive 1\software\TriOS\TriOS-SVN\hive-trios>REM --> \bin\flash 
+
+H:\Projekte\Technik\hive 1\software\TriOS\TriOS-SVN\hive-trios>bstc.exe -L ".\lib" -b -O a .\flash\administra\admflash.spin 
+Brads Spin Tool Compiler v0.15.3 - Copyright 2008,2009 All rights reserved
+Compiled for i386 Win32 at 08:17:48 on 2009/07/20
+Loading Object admflash
+Loading Object adm-fat
+Loading Object adm-rtc.spin
+Loading Object adm-hss
+Loading Object adm-wav
+Loading Object adm-rtc
+Loading Object adm-com
+Loading Object adm-plx
+Loading Object glob-con
+Program size is 14352 longs
+2 Constants folded
+Compiled 3179 Lines of Code in 1,759 Seconds
+
+H:\Projekte\Technik\hive 1\software\TriOS\TriOS-SVN\hive-trios>copy admflash.binary ".\bin\flash" 
+        1 Datei(en) kopiert.
+
+H:\Projekte\Technik\hive 1\software\TriOS\TriOS-SVN\hive-trios>rename admflash.binary admsys.adm 
+
+H:\Projekte\Technik\hive 1\software\TriOS\TriOS-SVN\hive-trios>move admsys.adm ".\bin\sdcard\system" 
+        1 Datei(en) verschoben.
+
+H:\Projekte\Technik\hive 1\software\TriOS\TriOS-SVN\hive-trios>bstc.exe -L ".\lib" -D __VGA -b -O a .\flash\bellatrix\belflash.spin 
+Brads Spin Tool Compiler v0.15.3 - Copyright 2008,2009 All rights reserved
+Compiled for i386 Win32 at 08:17:48 on 2009/07/20
+Loading Object belflash
+Loading Object belf-vga
+Loading Object bel-vga
+Loading Object bel-keyb
+Loading Object bel-bus
+Loading Object glob-con
+Program size is 7620 longs
+25 Constants folded
+Compiled 1625 Lines of Code in 0,679 Seconds
+
+H:\Projekte\Technik\hive 1\software\TriOS\TriOS-SVN\hive-trios>copy belflash.binary ".\bin\flash" 
+        1 Datei(en) kopiert.
+
+H:\Projekte\Technik\hive 1\software\TriOS\TriOS-SVN\hive-trios>rename belflash.binary vga.bel 
+
+H:\Projekte\Technik\hive 1\software\TriOS\TriOS-SVN\hive-trios>move vga.bel ".\bin\sdcard\system" 
+        1 Datei(en) verschoben.
+
+H:\Projekte\Technik\hive 1\software\TriOS\TriOS-SVN\hive-trios>bstc.exe -L ".\lib" -D __TV -b -O a .\flash\bellatrix\belflash.spin 
+Brads Spin Tool Compiler v0.15.3 - Copyright 2008,2009 All rights reserved
+Compiled for i386 Win32 at 08:17:48 on 2009/07/20
+Loading Object belflash
+Loading Object belf-tv
+Loading Object bel-tv
+Loading Object bel-keyb
+Loading Object bel-bus
+Loading Object glob-con
+Program size is 7660 longs
+27 Constants folded
+Compiled 1680 Lines of Code in 0,669 Seconds
+
+H:\Projekte\Technik\hive 1\software\TriOS\TriOS-SVN\hive-trios>rename belflash.binary tv.bel 
+
+H:\Projekte\Technik\hive 1\software\TriOS\TriOS-SVN\hive-trios>move tv.bel ".\bin\sdcard\system" 
+        1 Datei(en) verschoben.
+
+H:\Projekte\Technik\hive 1\software\TriOS\TriOS-SVN\hive-trios>bstc.exe -L ".\lib" -b -O a .\flash\regnatix\regflash.spin 
+Brads Spin Tool Compiler v0.15.3 - Copyright 2008,2009 All rights reserved
+Compiled for i386 Win32 at 08:17:48 on 2009/07/20
+Loading Object regflash
+Program size is 32580 longs
+Compiled 693 Lines of Code in 0,179 Seconds
+
+H:\Projekte\Technik\hive 1\software\TriOS\TriOS-SVN\hive-trios>move regflash.binary ".\bin\flash" 
+        1 Datei(en) verschoben.
+
+H:\Projekte\Technik\hive 1\software\TriOS\TriOS-SVN\hive-trios>REM ---------------------------------------------------------------- 
+
+H:\Projekte\Technik\hive 1\software\TriOS\TriOS-SVN\hive-trios>REM Startdateie erzeugen 
+
+H:\Projekte\Technik\hive 1\software\TriOS\TriOS-SVN\hive-trios>REM reg.sys	(Regime) 
+
+H:\Projekte\Technik\hive 1\software\TriOS\TriOS-SVN\hive-trios>REM --> \bin\sdcard\ 
+
+H:\Projekte\Technik\hive 1\software\TriOS\TriOS-SVN\hive-trios>bstc.exe -L ".\lib" -b -O a .\system\regnatix\regime.spin  
+Brads Spin Tool Compiler v0.15.3 - Copyright 2008,2009 All rights reserved
+Compiled for i386 Win32 at 08:17:48 on 2009/07/20
+Loading Object regime
+Loading Object reg-ios
+Loading Object glob-con
+Loading Object glob-string
+Program size is 9868 longs
+2 Constants folded
+Compiled 2868 Lines of Code in 0,739 Seconds
+
+H:\Projekte\Technik\hive 1\software\TriOS\TriOS-SVN\hive-trios>rename regime.binary reg.sys 
+
+H:\Projekte\Technik\hive 1\software\TriOS\TriOS-SVN\hive-trios>move reg.sys ".\bin\sdcard" 
+        1 Datei(en) verschoben.
+
+H:\Projekte\Technik\hive 1\software\TriOS\TriOS-SVN\hive-trios>REM ---------------------------------------------------------------- 
+
+H:\Projekte\Technik\hive 1\software\TriOS\TriOS-SVN\hive-trios>REM Slave-Dateien erzeugen 
+
+H:\Projekte\Technik\hive 1\software\TriOS\TriOS-SVN\hive-trios>REM admsid, admay, admterm 
+
+H:\Projekte\Technik\hive 1\software\TriOS\TriOS-SVN\hive-trios>REM htxt, g0key 
+
+H:\Projekte\Technik\hive 1\software\TriOS\TriOS-SVN\hive-trios>bstc.exe -L ".\lib" -b -O a .\system\administra\admsid\admsid.spin 
+Brads Spin Tool Compiler v0.15.3 - Copyright 2008,2009 All rights reserved
+Compiled for i386 Win32 at 08:17:48 on 2009/07/20
+Loading Object admsid
+Loading Object adm-fat
+Loading Object adm-rtc.spin
+Loading Object adm-sid
+Loading Object glob-con
+Program size is 12112 longs
+Compiled 2522 Lines of Code in 1,519 Seconds
+
+H:\Projekte\Technik\hive 1\software\TriOS\TriOS-SVN\hive-trios>bstc.exe -L ".\lib" -b -O a .\system\administra\admay\admay.spin 
+Brads Spin Tool Compiler v0.15.3 - Copyright 2008,2009 All rights reserved
+Compiled for i386 Win32 at 08:17:48 on 2009/07/20
+Loading Object admay
+Loading Object adm-fat
+Loading Object adm-rtc.spin
+Loading Object adm-ay
+Loading Object glob-con
+Program size is 8344 longs
+Compiled 2011 Lines of Code in 0,82 Seconds
+
+H:\Projekte\Technik\hive 1\software\TriOS\TriOS-SVN\hive-trios>bstc.exe -L ".\lib" -b -O a .\system\administra\admnet\admnet.spin 
+Brads Spin Tool Compiler v0.15.3 - Copyright 2008,2009 All rights reserved
+Compiled for i386 Win32 at 08:17:48 on 2009/07/20
+Loading Object admnet
+Loading Object adm-fat
+Loading Object adm-rtc.spin
+Loading Object adm-hss
+Loading Object adm-rtc
+Loading Object adm-com
+Loading Object adm-socket
+Loading Object adm-enc28j60
+Loading Object glob-con
+Loading Object glob-numbers
+Program size is 21952 longs
+4 Constants folded
+Compiled 4722 Lines of Code in 1,789 Seconds
+
+H:\Projekte\Technik\hive 1\software\TriOS\TriOS-SVN\hive-trios>rename *.binary *.adm 
+
+H:\Projekte\Technik\hive 1\software\TriOS\TriOS-SVN\hive-trios>bstc.exe -L ".\lib" -b -O a .\system\bellatrix\bel-htext\htext.spin 
+Brads Spin Tool Compiler v0.15.3 - Copyright 2008,2009 All rights reserved
+Compiled for i386 Win32 at 08:17:48 on 2009/07/20
+Loading Object htext
+Loading Object bel-htext
+Loading Object bel-keyb
+Program size is 6656 longs
+12 Constants folded
+Compiled 958 Lines of Code in 0,119 Seconds
+
+H:\Projekte\Technik\hive 1\software\TriOS\TriOS-SVN\hive-trios>bstc.exe -L ".\lib" -b -O a .\system\bellatrix\bel-g0\g0key.spin 
+Brads Spin Tool Compiler v0.15.3 - Copyright 2008,2009 All rights reserved
+Compiled for i386 Win32 at 08:17:48 on 2009/07/20
+Loading Object g0key
+Loading Object bel-tv
+Loading Object glob-con
+Program size is 7156 longs
+1 Constants folded
+Compiled 2166 Lines of Code in 0,529 Seconds
+
+H:\Projekte\Technik\hive 1\software\TriOS\TriOS-SVN\hive-trios>rename *.binary *.bel 
+
+H:\Projekte\Technik\hive 1\software\TriOS\TriOS-SVN\hive-trios>move *.adm ".\bin\sdcard\system" 
+H:\Projekte\Technik\hive 1\software\TriOS\TriOS-SVN\hive-trios\admay.adm
+H:\Projekte\Technik\hive 1\software\TriOS\TriOS-SVN\hive-trios\admnet.adm
+H:\Projekte\Technik\hive 1\software\TriOS\TriOS-SVN\hive-trios\admsid.adm
+        3 Datei(en) verschoben.
+
+H:\Projekte\Technik\hive 1\software\TriOS\TriOS-SVN\hive-trios>move *.bel ".\bin\sdcard\system" 
+H:\Projekte\Technik\hive 1\software\TriOS\TriOS-SVN\hive-trios\g0key.bel
+H:\Projekte\Technik\hive 1\software\TriOS\TriOS-SVN\hive-trios\htext.bel
+        2 Datei(en) verschoben.
+
+H:\Projekte\Technik\hive 1\software\TriOS\TriOS-SVN\hive-trios>REM ---------------------------------------------------------------- 
+
+H:\Projekte\Technik\hive 1\software\TriOS\TriOS-SVN\hive-trios>REM Systemdateien erzeugen 
+
+H:\Projekte\Technik\hive 1\software\TriOS\TriOS-SVN\hive-trios>REM - div. externe Kommandos 
+
+H:\Projekte\Technik\hive 1\software\TriOS\TriOS-SVN\hive-trios>REM - div. Systemdateien (Farbtabellen usw.) 
+
+H:\Projekte\Technik\hive 1\software\TriOS\TriOS-SVN\hive-trios>REM --> \bin\sdcard\system\ 
+
+H:\Projekte\Technik\hive 1\software\TriOS\TriOS-SVN\hive-trios>for %x in (.\system\regnatix\*.spin) do bstc.exe -L ".\lib" -b -O a %x  
+
+H:\Projekte\Technik\hive 1\software\TriOS\TriOS-SVN\hive-trios>bstc.exe -L ".\lib" -b -O a .\system\regnatix\admtest.spin  
+Brads Spin Tool Compiler v0.15.3 - Copyright 2008,2009 All rights reserved
+Compiled for i386 Win32 at 08:17:48 on 2009/07/20
+Loading Object admtest
+Loading Object reg-ios
+Loading Object glob-con
+Loading Object glob-string
+Program size is 8616 longs
+2 Constants folded
+Compiled 2666 Lines of Code in 0,139 Seconds
+
+H:\Projekte\Technik\hive 1\software\TriOS\TriOS-SVN\hive-trios>bstc.exe -L ".\lib" -b -O a .\system\regnatix\beltest.spin  
+Brads Spin Tool Compiler v0.15.3 - Copyright 2008,2009 All rights reserved
+Compiled for i386 Win32 at 08:17:48 on 2009/07/20
+Loading Object beltest
+Loading Object reg-ios
+Loading Object glob-con
+Loading Object glob-string
+Program size is 6792 longs
+6 Constants folded
+Compiled 2546 Lines of Code in 0,74 Seconds
+
+H:\Projekte\Technik\hive 1\software\TriOS\TriOS-SVN\hive-trios>bstc.exe -L ".\lib" -b -O a .\system\regnatix\charmap.spin  
+Brads Spin Tool Compiler v0.15.3 - Copyright 2008,2009 All rights reserved
+Compiled for i386 Win32 at 08:17:48 on 2009/07/20
+Loading Object charmap
+Loading Object reg-ios
+Loading Object glob-con
+Program size is 2664 longs
+2 Constants folded
+Compiled 1975 Lines of Code in 0,5 Seconds
+
+H:\Projekte\Technik\hive 1\software\TriOS\TriOS-SVN\hive-trios>bstc.exe -L ".\lib" -b -O a .\system\regnatix\eram.spin  
+Brads Spin Tool Compiler v0.15.3 - Copyright 2008,2009 All rights reserved
+Compiled for i386 Win32 at 08:17:48 on 2009/07/20
+Loading Object eram
+Loading Object glob-numbers
+Loading Object reg-ios
+Loading Object glob-con
+Program size is 7364 longs
+2 Constants folded
+Compiled 2937 Lines of Code in 0,23 Seconds
+
+H:\Projekte\Technik\hive 1\software\TriOS\TriOS-SVN\hive-trios>bstc.exe -L ".\lib" -b -O a .\system\regnatix\flash.spin  
+Brads Spin Tool Compiler v0.15.3 - Copyright 2008,2009 All rights reserved
+Compiled for i386 Win32 at 08:17:48 on 2009/07/20
+Loading Object flash
+Loading Object reg-ios
+Loading Object glob-con
+Loading Object glob-sdspi
+Loading Object glob-numbers
+Program size is 7556 longs
+8 Constants folded
+Compiled 3350 Lines of Code in 0,889 Seconds
+
+H:\Projekte\Technik\hive 1\software\TriOS\TriOS-SVN\hive-trios>bstc.exe -L ".\lib" -b -O a .\system\regnatix\fm.spin  
+Brads Spin Tool Compiler v0.15.3 - Copyright 2008,2009 All rights reserved
+Compiled for i386 Win32 at 08:17:48 on 2009/07/20
+Loading Object fm
+Loading Object reg-ios
+Loading Object glob-con
+Loading Object gui-dlbox
+Loading Object fm-con
+Loading Object gui-pbar
+Loading Object gui-wbox
+Loading Object gui-input
+Loading Object glob-string
+Program size is 8276 longs
+22 Constants folded
+Compiled 2833 Lines of Code in 0,79 Seconds
+
+H:\Projekte\Technik\hive 1\software\TriOS\TriOS-SVN\hive-trios>bstc.exe -L ".\lib" -b -O a .\system\regnatix\fterm.spin  
+Brads Spin Tool Compiler v0.15.3 - Copyright 2008,2009 All rights reserved
+Compiled for i386 Win32 at 08:17:48 on 2009/07/20
+Loading Object fterm
+Loading Object reg-ios
+Loading Object glob-con
+Loading Object glob-fds
+Program size is 3068 longs
+2 Constants folded
+Compiled 2155 Lines of Code in 0,719 Seconds
+
+H:\Projekte\Technik\hive 1\software\TriOS\TriOS-SVN\hive-trios>bstc.exe -L ".\lib" -b -O a .\system\regnatix\ftp.spin  
+Brads Spin Tool Compiler v0.15.3 - Copyright 2008,2009 All rights reserved
+Compiled for i386 Win32 at 08:17:48 on 2009/07/20
+Loading Object ftp
+Loading Object reg-ios
+Loading Object glob-con
+Loading Object glob-string
+Loading Object glob-numbers
+Program size is 7444 longs
+8 Constants folded
+Compiled 2900 Lines of Code in 0,839 Seconds
+
+H:\Projekte\Technik\hive 1\software\TriOS\TriOS-SVN\hive-trios>bstc.exe -L ".\lib" -b -O a .\system\regnatix\g0test.spin  
+Brads Spin Tool Compiler v0.15.3 - Copyright 2008,2009 All rights reserved
+Compiled for i386 Win32 at 08:17:48 on 2009/07/20
+Loading Object g0test
+Loading Object reg-ios
+Loading Object glob-con
+Program size is 6396 longs
+40 Constants folded
+Compiled 2464 Lines of Code in 0,32 Seconds
+
+H:\Projekte\Technik\hive 1\software\TriOS\TriOS-SVN\hive-trios>bstc.exe -L ".\lib" -b -O a .\system\regnatix\hplay.spin  
+Brads Spin Tool Compiler v0.15.3 - Copyright 2008,2009 All rights reserved
+Compiled for i386 Win32 at 08:17:48 on 2009/07/20
+Loading Object hplay
+Loading Object reg-ios
+Loading Object glob-con
+Program size is 4404 longs
+10 Constants folded
+Compiled 2216 Lines of Code in 0,44 Seconds
+
+H:\Projekte\Technik\hive 1\software\TriOS\TriOS-SVN\hive-trios>bstc.exe -L ".\lib" -b -O a .\system\regnatix\ipconfig.spin  
+Brads Spin Tool Compiler v0.15.3 - Copyright 2008,2009 All rights reserved
+Compiled for i386 Win32 at 08:17:48 on 2009/07/20
+Loading Object ipconfig
+Loading Object reg-ios
+Loading Object glob-con
+Loading Object glob-string
+Loading Object glob-numbers
+Program size is 4992 longs
+8 Constants folded
+Compiled 2742 Lines of Code in 0,86 Seconds
+
+H:\Projekte\Technik\hive 1\software\TriOS\TriOS-SVN\hive-trios>bstc.exe -L ".\lib" -b -O a .\system\regnatix\irc.spin  
+Brads Spin Tool Compiler v0.15.3 - Copyright 2008,2009 All rights reserved
+Compiled for i386 Win32 at 08:17:48 on 2009/07/20
+Loading Object irc
+Loading Object reg-ios
+Loading Object glob-con
+Loading Object glob-string
+Loading Object glob-numbers
+Loading Object glob-led-engine
+Program size is 13840 longs
+14 Constants folded
+Compiled 3777 Lines of Code in 1,02 Seconds
+
+H:\Projekte\Technik\hive 1\software\TriOS\TriOS-SVN\hive-trios>bstc.exe -L ".\lib" -b -O a .\system\regnatix\keycode.spin  
+Brads Spin Tool Compiler v0.15.3 - Copyright 2008,2009 All rights reserved
+Compiled for i386 Win32 at 08:17:48 on 2009/07/20
+Loading Object keycode
+Loading Object reg-ios
+Loading Object glob-con
+Program size is 2592 longs
+2 Constants folded
+Compiled 1978 Lines of Code in 0,52 Seconds
+
+H:\Projekte\Technik\hive 1\software\TriOS\TriOS-SVN\hive-trios>bstc.exe -L ".\lib" -b -O a .\system\regnatix\m.spin  
+Brads Spin Tool Compiler v0.15.3 - Copyright 2008,2009 All rights reserved
+Compiled for i386 Win32 at 08:17:48 on 2009/07/20
+Loading Object m
+Loading Object reg-ios
+Loading Object glob-con
+Loading Object m-glob-con
+Program size is 3772 longs
+2 Constants folded
+Compiled 2311 Lines of Code in 0,109 Seconds
+
+H:\Projekte\Technik\hive 1\software\TriOS\TriOS-SVN\hive-trios>bstc.exe -L ".\lib" -b -O a .\system\regnatix\man.spin  
+Brads Spin Tool Compiler v0.15.3 - Copyright 2008,2009 All rights reserved
+Compiled for i386 Win32 at 08:17:48 on 2009/07/20
+Loading Object man
+Loading Object reg-ios
+Loading Object glob-con
+Loading Object glob-string
+Program size is 3152 longs
+2 Constants folded
+Compiled 2161 Lines of Code in 0,73 Seconds
+
+H:\Projekte\Technik\hive 1\software\TriOS\TriOS-SVN\hive-trios>bstc.exe -L ".\lib" -b -O a .\system\regnatix\perplex.spin  
+Brads Spin Tool Compiler v0.15.3 - Copyright 2008,2009 All rights reserved
+Compiled for i386 Win32 at 08:17:48 on 2009/07/20
+Loading Object perplex
+Loading Object reg-ios
+Loading Object glob-con
+Loading Object glob-numbers
+Program size is 6160 longs
+3 Constants folded
+Compiled 2771 Lines of Code in 0,809 Seconds
+
+H:\Projekte\Technik\hive 1\software\TriOS\TriOS-SVN\hive-trios>bstc.exe -L ".\lib" -b -O a .\system\regnatix\ramtest.spin  
+Brads Spin Tool Compiler v0.15.3 - Copyright 2008,2009 All rights reserved
+Compiled for i386 Win32 at 08:17:48 on 2009/07/20
+Loading Object ramtest
+Loading Object reg-ios
+Loading Object glob-con
+Program size is 4664 longs
+36 Constants folded
+Compiled 2230 Lines of Code in 0,52 Seconds
+
+H:\Projekte\Technik\hive 1\software\TriOS\TriOS-SVN\hive-trios>bstc.exe -L ".\lib" -b -O a .\system\regnatix\regime.spin  
+Brads Spin Tool Compiler v0.15.3 - Copyright 2008,2009 All rights reserved
+Compiled for i386 Win32 at 08:17:48 on 2009/07/20
+Loading Object regime
+Loading Object reg-ios
+Loading Object glob-con
+Loading Object glob-string
+Program size is 9868 longs
+2 Constants folded
+Compiled 2868 Lines of Code in 0,579 Seconds
+
+H:\Projekte\Technik\hive 1\software\TriOS\TriOS-SVN\hive-trios>bstc.exe -L ".\lib" -b -O a .\system\regnatix\rom.spin  
+Brads Spin Tool Compiler v0.15.3 - Copyright 2008,2009 All rights reserved
+Compiled for i386 Win32 at 08:17:48 on 2009/07/20
+Loading Object rom
+Loading Object reg-ios
+Loading Object glob-con
+Loading Object glob-sdspi
+Program size is 4776 longs
+5 Constants folded
+Compiled 2591 Lines of Code in 0,5 Seconds
+
+H:\Projekte\Technik\hive 1\software\TriOS\TriOS-SVN\hive-trios>bstc.exe -L ".\lib" -b -O a .\system\regnatix\sfxtool.spin  
+Brads Spin Tool Compiler v0.15.3 - Copyright 2008,2009 All rights reserved
+Compiled for i386 Win32 at 08:17:48 on 2009/07/20
+Loading Object sfxtool
+Loading Object reg-ios
+Loading Object glob-con
+Loading Object glob-numbers
+Loading Object glob-string
+Program size is 7056 longs
+2 Constants folded
+Compiled 2918 Lines of Code in 0,809 Seconds
+
+H:\Projekte\Technik\hive 1\software\TriOS\TriOS-SVN\hive-trios>bstc.exe -L ".\lib" -b -O a .\system\regnatix\splay.spin  
+Brads Spin Tool Compiler v0.15.3 - Copyright 2008,2009 All rights reserved
+Compiled for i386 Win32 at 08:17:48 on 2009/07/20
+Loading Object splay
+Loading Object reg-ios
+Loading Object glob-con
+Program size is 3476 longs
+2 Constants folded
+Compiled 2087 Lines of Code in 0,529 Seconds
+
+H:\Projekte\Technik\hive 1\software\TriOS\TriOS-SVN\hive-trios>bstc.exe -L ".\lib" -b -O a .\system\regnatix\sysconf.spin  
+Brads Spin Tool Compiler v0.15.3 - Copyright 2008,2009 All rights reserved
+Compiled for i386 Win32 at 08:17:48 on 2009/07/20
+Loading Object sysconf
+Loading Object reg-ios
+Loading Object glob-con
+Program size is 4640 longs
+3 Constants folded
+Compiled 2208 Lines of Code in 0,17 Seconds
+
+H:\Projekte\Technik\hive 1\software\TriOS\TriOS-SVN\hive-trios>bstc.exe -L ".\lib" -b -O a .\system\regnatix\tapecut.spin  
+Brads Spin Tool Compiler v0.15.3 - Copyright 2008,2009 All rights reserved
+Compiled for i386 Win32 at 08:17:48 on 2009/07/20
+Loading Object tapecut
+Loading Object reg-ios
+Loading Object glob-con
+Loading Object glob-numbers
+Loading Object m-glob-con
+Program size is 3972 longs
+2 Constants folded
+Compiled 2694 Lines of Code in 0,8 Seconds
+
+H:\Projekte\Technik\hive 1\software\TriOS\TriOS-SVN\hive-trios>bstc.exe -L ".\lib" -b -O a .\system\regnatix\time.spin  
+Brads Spin Tool Compiler v0.15.3 - Copyright 2008,2009 All rights reserved
+Compiled for i386 Win32 at 08:17:48 on 2009/07/20
+Loading Object time
+Loading Object reg-ios
+Loading Object glob-con
+Loading Object glob-string
+Loading Object glob-numbers
+Program size is 6216 longs
+2 Constants folded
+Compiled 2753 Lines of Code in 0,639 Seconds
+
+H:\Projekte\Technik\hive 1\software\TriOS\TriOS-SVN\hive-trios>bstc.exe -L ".\lib" -b -O a .\system\regnatix\wplay.spin  
+Brads Spin Tool Compiler v0.15.3 - Copyright 2008,2009 All rights reserved
+Compiled for i386 Win32 at 08:17:48 on 2009/07/20
+Loading Object wplay
+Loading Object reg-ios
+Loading Object glob-con
+Program size is 3760 longs
+2 Constants folded
+Compiled 2109 Lines of Code in 0,52 Seconds
+
+H:\Projekte\Technik\hive 1\software\TriOS\TriOS-SVN\hive-trios>bstc.exe -L ".\lib" -b -O a .\system\regnatix\yplay.spin  
+Brads Spin Tool Compiler v0.15.3 - Copyright 2008,2009 All rights reserved
+Compiled for i386 Win32 at 08:17:48 on 2009/07/20
+Loading Object yplay
+Loading Object reg-ios
+Loading Object glob-con
+Program size is 3760 longs
+2 Constants folded
+Compiled 2157 Lines of Code in 0,52 Seconds
+
+H:\Projekte\Technik\hive 1\software\TriOS\TriOS-SVN\hive-trios>rename *.binary *.bin 
+
+H:\Projekte\Technik\hive 1\software\TriOS\TriOS-SVN\hive-trios>move *.bin ".\bin\sdcard\system"  
+H:\Projekte\Technik\hive 1\software\TriOS\TriOS-SVN\hive-trios\admtest.bin
+H:\Projekte\Technik\hive 1\software\TriOS\TriOS-SVN\hive-trios\beltest.bin
+H:\Projekte\Technik\hive 1\software\TriOS\TriOS-SVN\hive-trios\charmap.bin
+H:\Projekte\Technik\hive 1\software\TriOS\TriOS-SVN\hive-trios\eram.bin
+H:\Projekte\Technik\hive 1\software\TriOS\TriOS-SVN\hive-trios\flash.bin
+H:\Projekte\Technik\hive 1\software\TriOS\TriOS-SVN\hive-trios\fm.bin
+H:\Projekte\Technik\hive 1\software\TriOS\TriOS-SVN\hive-trios\fterm.bin
+H:\Projekte\Technik\hive 1\software\TriOS\TriOS-SVN\hive-trios\ftp.bin
+H:\Projekte\Technik\hive 1\software\TriOS\TriOS-SVN\hive-trios\g0test.bin
+H:\Projekte\Technik\hive 1\software\TriOS\TriOS-SVN\hive-trios\hplay.bin
+H:\Projekte\Technik\hive 1\software\TriOS\TriOS-SVN\hive-trios\ipconfig.bin
+H:\Projekte\Technik\hive 1\software\TriOS\TriOS-SVN\hive-trios\irc.bin
+H:\Projekte\Technik\hive 1\software\TriOS\TriOS-SVN\hive-trios\keycode.bin
+H:\Projekte\Technik\hive 1\software\TriOS\TriOS-SVN\hive-trios\m.bin
+H:\Projekte\Technik\hive 1\software\TriOS\TriOS-SVN\hive-trios\man.bin
+H:\Projekte\Technik\hive 1\software\TriOS\TriOS-SVN\hive-trios\perplex.bin
+H:\Projekte\Technik\hive 1\software\TriOS\TriOS-SVN\hive-trios\ramtest.bin
+H:\Projekte\Technik\hive 1\software\TriOS\TriOS-SVN\hive-trios\regime.bin
+H:\Projekte\Technik\hive 1\software\TriOS\TriOS-SVN\hive-trios\rom.bin
+H:\Projekte\Technik\hive 1\software\TriOS\TriOS-SVN\hive-trios\sfxtool.bin
+H:\Projekte\Technik\hive 1\software\TriOS\TriOS-SVN\hive-trios\splay.bin
+H:\Projekte\Technik\hive 1\software\TriOS\TriOS-SVN\hive-trios\sysconf.bin
+H:\Projekte\Technik\hive 1\software\TriOS\TriOS-SVN\hive-trios\tapecut.bin
+H:\Projekte\Technik\hive 1\software\TriOS\TriOS-SVN\hive-trios\time.bin
+H:\Projekte\Technik\hive 1\software\TriOS\TriOS-SVN\hive-trios\wplay.bin
+H:\Projekte\Technik\hive 1\software\TriOS\TriOS-SVN\hive-trios\yplay.bin
+       26 Datei(en) verschoben.
+
+H:\Projekte\Technik\hive 1\software\TriOS\TriOS-SVN\hive-trios>copy .\forth\*.* ".\bin\sdcard\system" 
+.\forth\adm.lib
+.\forth\ari.lib
+.\forth\basics.mod
+.\forth\bel.lib
+.\forth\cog.lib
+.\forth\debug.mod
+.\forth\fib.mod
+.\forth\g0.lib
+.\forth\hplay.mod
+.\forth\hss.lib
+.\forth\key.lib
+.\forth\rom.mod
+.\forth\scr.lib
+.\forth\sd0.lib
+.\forth\sfx.lib
+.\forth\splay.mod
+.\forth\tools.mod
+.\forth\tpix.f
+.\forth\v1.mod
+.\forth\wav.lib
+.\forth\win.lib
+.\forth\words.mod
+.\forth\wplay.mod
+       23 Datei(en) kopiert.
+
+H:\Projekte\Technik\hive 1\software\TriOS\TriOS-SVN\hive-trios>copy .\system\sonstiges ".\bin\sdcard\system" 
+.\system\sonstiges\BLUE.COL
+.\system\sonstiges\BW.COL
+.\system\sonstiges\BWHALF.COL
+.\system\sonstiges\CHESS.COL
+.\system\sonstiges\eram.man
+.\system\sonstiges\error.man
+.\system\sonstiges\flash.man
+.\system\sonstiges\fm.man
+.\system\sonstiges\ftp.man
+.\system\sonstiges\GREEN.COL
+.\system\sonstiges\hplay.man
+.\system\sonstiges\PAR.COL
+.\system\sonstiges\regime.man
+.\system\sonstiges\splay.man
+.\system\sonstiges\sysconf.man
+.\system\sonstiges\test1.txt
+.\system\sonstiges\test2.txt
+.\system\sonstiges\wplay.man
+.\system\sonstiges\yplay.man
+       19 Datei(en) kopiert.
+
+H:\Projekte\Technik\hive 1\software\TriOS\TriOS-SVN\hive-trios>echo off 

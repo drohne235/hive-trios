@@ -1,0 +1,74 @@
+
+hex
+
+ifnot: lib:cog 
+: lib:cog ;
+
+\ cog special register
+
+ifnot: ctra 1F8 wconstant ctra :;
+ifnot: ctrb 1F9 wconstant ctrb :;
+ifnot: frqa 1FA wconstant frqa :;
+ifnot: frqb 1FB wconstant frqb :;
+ifnot: phsa 1FC wconstant phsa :;
+ifnot: phsb 1FD wconstant phsb :;
+ifnot: vcfg 1FE wconstant vcfg :;
+ifnot: vscl 1FF wconstant vscl :;
+
+\ this words needs to align with the assembler code
+
+ifnot: _faddrmask : _faddrmask 1 _cv ;
+ifnot: _flongmask : _flongmask 2 _cv ;
+ifnot: _stptr : _stptr 5 _cv ;
+ifnot: _sttos : _sttos 7 _cv ;
+ifnot: _treg1 : _treg1 8 _cv ;
+ifnot: _treg2 : _treg2 9 _cv ;
+ifnot: _treg3 : _treg3 a _cv ;
+ifnot: _treg4 : _treg4 b _cv ;
+ifnot: _treg5 : _treg5 c _cv ;
+ifnot: _treg6 : _treg6 d _cv ;
+ifnot: _stbot : _stbot e _cv ;
+ifnot: _sttop : _sttop 2e _cv ;
+ifnot: _rsbot : _rsbot _sttop ;
+
+\ waitcnt ( n1 n2 -- n1 ) \ wait until n1, add n2 to n1
+ifnot: waitcnt
+: waitcnt _execasm2>1 1F1 _cnip ;
+
+\ waitpeq ( n1 n2 -- ) \ wait until state n1 is equal to 
+\ ina anded with n2
+ifnot: waitpeq
+: waitpeq _execasm2>0 1E0 _cnip ;
+
+\ waitpne ( n1 n2 -- ) \ wait until state n1 is not equal 
+\ to ina anded with n2
+ifnot: waitpne
+: waitpne _execasm2>0 1E8 _cnip ;
+
+\ lockret ( n1 -- ) deallocate a lock, previously allocated 
+\ via locknew
+ifnot: lockret
+: lockret 5 hubop 2drop ;
+
+\ locknew ( -- n2 ) allocate a lock, result is in n2, -1 
+\ if unsuccessful
+ifnot: locknew
+: locknew -1 4 hubop -1 = if drop -1 then ;
+
+\ cog+ ( -- ) add a forth cog
+ifnot: cog+
+: cog+ (cog+) ;
+
+\ (cog-) ( -- ) stop first forth cog, cannot be executed form 
+\ the first forth cog 
+ifnot: (cog-)
+: (cog-) nfcog cogstop ;
+
+\ cog- ( -- ) stop first forth cog, cannot be executed form 
+\ the first forth cog 
+ifnot: cog-
+: cog- (cog-) ;
+
+
+
+

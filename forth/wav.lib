@@ -1,0 +1,54 @@
+
+hex
+
+ifnot: lib:wav 
+: lib:wav ;
+
+\ kommandoformen
+
+ifnot: adm:fkt!b@     \ ( fkt -- b )
+: adm:fkt!b@ b[ [a!] [a@] ]b ;
+
+ifnot: adm:fkt!s!b@   \ ( s fkt -- b )
+: adm:fkt!s!b@ b[ [a!] [a.s!] [a@] ]b ;
+
+ifnot: adm:fkt!l@l@   \ ( fkt -- l l )
+: adm:fkt!l@l@ b[ [a!] [a.l@] [a.l@] ]b ;
+
+\ wave-funktionen
+
+\ wav:start ( cstr -- err )
+ifnot: wav:start
+: wav:start
+  96 adm:fkt!s!b@ ;
+
+\ wav:stop ( -- )
+ifnot: wav:stop
+: wav:stop
+  97 adm:fkt!b@ drop ;
+  
+\ wav:status ( -- status )
+ifnot: wav:status
+: wav:status
+  98 adm:fkt!b@ ;
+
+\ wav:leftvol ( vol -- )
+ifnot: wav:leftvol
+: wav:leftvol
+  99 adm:fkt!b! ;
+  
+\ wav:rightvol ( vol -- )
+ifnot: wav:rightvol
+: wav:rightvol
+  9A adm:fkt!b! ;
+  
+\ wav:pause ( -- )
+ifnot: wav:pause
+: wav:pause
+  9B adm:fkt!b@ drop ;
+  
+\ wav:position ( -- len pos ) 
+ifnot: wav:position
+: wav:position
+  9C adm:fkt!l@l@ ;   
+
